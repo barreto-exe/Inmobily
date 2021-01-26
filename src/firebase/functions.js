@@ -34,3 +34,15 @@ export const registrarAgencia = (agencia) => {
   const promesa = db.collection("agencias").add(agencia);
   return promesa;
 }
+
+// Consultar asesores de una agencia
+export const obtenerAsesores = async (agenciaId) => {
+  const promesa = await db.collection("agencias").doc(agenciaId).collection("usuarios").where("tipo", "==", "asesor").get();
+  return promesa.docs();
+}
+
+// Consultar gerentes de una agencia
+export const obtenerGerentes = async (agenciaId) => {
+  const promesa = await db.collection("agencias").doc(agenciaId).collection("usuarios").where("tipo", "==", "gerente").get();
+  return promesa.docs();
+}
