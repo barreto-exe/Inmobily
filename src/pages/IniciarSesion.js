@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { iniciarSesion } from "../firebase/functions";
 
+// Pantalla de inicio de sesión
 const IniciarSesion = () => {
   // Estados
   const [usuario, setUsuario] = useState({
