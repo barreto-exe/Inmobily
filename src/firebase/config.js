@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 import "firebase/analytics";
+import "firebase/storage";
 
 // Inicializa Firebase
 firebase.initializeApp({
@@ -19,6 +20,8 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 // Analytics
 const analytics = firebase.analytics();
+// Storage
+const storage = firebase.storage();
 
 // Persistencia sin conexión
 db.enablePersistence().catch(function (err) {
@@ -26,4 +29,4 @@ db.enablePersistence().catch(function (err) {
   console.log(err.message);
 });
 
-export { auth, db, analytics };
+export { auth, db, analytics, storage };
