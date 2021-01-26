@@ -187,6 +187,7 @@ const RegistrarUsuario = () => {
         onChange={(e) => cambiarTexto("confirmacion", e.target.value)}
       ></TextField>
       <input type="file" accept="image/*" onChange={seleccionarFoto}></input>
+      <img src={foto && URL.createObjectURL(foto)} />
       <Button
         variant="contained"
         fullWidth
