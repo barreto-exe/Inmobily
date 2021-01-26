@@ -18,7 +18,7 @@ const RegistrarUsuario = () => {
 
   // Estados
   const [usuario, setUsuario] = useState(datosIniciales);
-  const [foto, setFoto] = useState();
+  const [foto, setFoto] = useState(null);
   const [mensajesError, setMensajesError] = useState(datosIniciales);
   const [mostrarPassword, setMostrarPassword] = useState(false);
 
@@ -40,7 +40,7 @@ const RegistrarUsuario = () => {
   // Función de registro la cuenta al clickear el botón
   const registrarCuenta = async () => {
     // Reinicia los mensajes de error
-    const mensajesError = datosIniciales;
+    const mensajesError = { ...datosIniciales };
 
     // Borra los espacios al inicio y al final
     for (const propiedad in usuario) {
@@ -92,6 +92,7 @@ const RegistrarUsuario = () => {
     // Intenta registrar al usuario
     try {
       await registrarUsuario(usuario);
+      alert("Registro exitoso");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         mensajesError.correo =

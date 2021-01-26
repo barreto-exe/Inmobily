@@ -20,10 +20,12 @@ export const registrarUsuario = async (usuario) => {
 
   const uid = respuesta.user.uid;
 
-  delete usuario.password;
-  delete usuario.confirmacion;
+  // Copia los datos del usuario
+  const datos = {...usuario}
+  delete datos.password;
+  delete datos.confirmacion;
 
-  const promesa = db.collection("usuarios").doc(uid).set(usuario);
+  const promesa = db.collection("usuarios").doc(uid).set(datos);
   return promesa;
 };
 
