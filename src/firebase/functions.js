@@ -28,7 +28,7 @@ export const registrarUsuario = async (usuario) => {
 };
 
 // Registro de agencia
-export const registrarAgencia = () => {
+export const registrarAgencia = (agencia) => {
   const promesa = db.collection("agencias").add(agencia);
   return promesa;
 }
