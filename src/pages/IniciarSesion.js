@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { iniciarSesion, cerrarSesion } from "../firebase/functions";
-import { TextField, Button } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 // Pantalla de inicio de sesión
 const IniciarSesion = () => {
@@ -21,6 +27,11 @@ const IniciarSesion = () => {
   // Función para cambiar visibilidad de la contraseña
   const cambiarVisibilidad = () => {
     setMostrarPassword(!mostrarPassword);
+  };
+
+  // Función del icono de de visibilidad
+  const manejarMousePassword = (e) => {
+    e.preventDefault();
   };
 
   // Función que inicia sesión al clickear el botón
@@ -66,9 +77,23 @@ const IniciarSesion = () => {
         fullWidth
         label="Contraseña"
         variant="outlined"
-        type="password"
+        type={mostrarPassword ? "text" : "password"}
         error={mensajeError !== ""}
         onChange={(e) => cambiarTexto("password", e.target.value)}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={cambiarVisibilidad}
+                onMouseDown={manejarMousePassword}
+                edge="end"
+              >
+                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       ></TextField>
       <Button
         variant="contained"

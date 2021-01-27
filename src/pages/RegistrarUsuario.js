@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { registrarUsuario } from "../firebase/functions";
-import { TextField, Button } from "@material-ui/core";
+import {
+  TextField,
+  Button,
+  InputAdornment,
+  IconButton,
+} from "@material-ui/core";
+import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 // Página para registrar una cuenta nueva
 const RegistrarUsuario = () => {
@@ -35,6 +41,11 @@ const RegistrarUsuario = () => {
   const seleccionarFoto = (e) => {
     const foto = e.target.files[0];
     setFoto(foto);
+  };
+
+  // Función del icono de de visibilidad
+  const manejarMousePassword = (e) => {
+    e.preventDefault();
   };
 
   // Función de registro la cuenta al clickear el botón
@@ -171,20 +182,50 @@ const RegistrarUsuario = () => {
       <TextField
         fullWidth
         label="Contraseña"
+        type={mostrarPassword ? "text" : "password"}
         variant="outlined"
         required
         error={mensajesError.password !== ""}
         helperText={mensajesError.password}
         onChange={(e) => cambiarTexto("password", e.target.value)}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={cambiarVisibilidad}
+                onMouseDown={manejarMousePassword}
+                edge="end"
+              >
+                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       ></TextField>
       <TextField
         fullWidth
         label="Repetir Contraseña"
+        type={mostrarPassword ? "text" : "password"}
         variant="outlined"
         required
         error={mensajesError.confirmacion !== ""}
         helperText={mensajesError.confirmacion}
         onChange={(e) => cambiarTexto("confirmacion", e.target.value)}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={cambiarVisibilidad}
+                onMouseDown={manejarMousePassword}
+                edge="end"
+              >
+                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
       ></TextField>
       {/* Ocultar el input y que solo se muestre un botón */}
       <input type="file" accept="image/*" onChange={seleccionarFoto}></input>
