@@ -91,7 +91,7 @@ const RegistrarUsuario = () => {
 
     // Intenta registrar al usuario
     try {
-      await registrarUsuario(usuario);
+      await registrarUsuario(usuario, foto);
       alert("Registro exitoso");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
@@ -186,8 +186,10 @@ const RegistrarUsuario = () => {
         helperText={mensajesError.confirmacion}
         onChange={(e) => cambiarTexto("confirmacion", e.target.value)}
       ></TextField>
+      {/* Ocultar el input y que solo se muestre un botón */}
       <input type="file" accept="image/*" onChange={seleccionarFoto}></input>
-      <img src={foto && URL.createObjectURL(foto)} />
+      {/* TODO: Colocar una imagen predeterminada */}
+      <img src={foto && URL.createObjectURL(foto)} alt="Foto de perfil" />
       <Button
         variant="contained"
         fullWidth
