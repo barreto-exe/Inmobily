@@ -6,7 +6,52 @@ import {
   InputAdornment,
   IconButton,
 } from "@material-ui/core";
+import {
+  fade,
+  ThemeProvider,
+  withStyles,
+  makeStyles,
+  createMuiTheme,
+} from '@material-ui/core/styles';
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import "./IniciarSesion.css";
+import MailIcon from "@material-ui/icons/Mail";
+import LockIcon from "@material-ui/icons/Lock";
+import FondoLogo from "./fondologo.jpg";
+
+const ButtonCustom = withStyles((theme) => ({
+  root: {
+    color: "#fff",
+    backgroundColor: "#41A48F",
+    '&:hover': {
+      backgroundColor: "#215248",
+      
+    },
+  },
+}))(Button);
+
+const InputCustom = withStyles({      //Estilizar Inputs
+  root: {
+    '& label.Mui-focused': {
+      color: '#fff',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#fff',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: '#fff',
+      },
+      '&:hover fieldset': {
+        borderColor: '#fff',
+        borderBottomColor: '#fff',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#fff',
+      },
+    },
+  },
+})(TextField);
 
 // Pantalla de inicio de sesión
 const IniciarSesion = () => {
@@ -61,56 +106,88 @@ const IniciarSesion = () => {
       setMensajeError(mensaje);
     }
   };
-
+  
   return (
-    <div>
-      <h1>Iniciar Sesión</h1>
-      <TextField
-        fullWidth
-        label="Correo"
-        variant="outlined"
-        type="email"
-        error={mensajeError !== ""}
-        onChange={(e) => cambiarTexto("correo", e.target.value)}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Contraseña"
-        variant="outlined"
-        type={mostrarPassword ? "text" : "password"}
-        error={mensajeError !== ""}
-        onChange={(e) => cambiarTexto("password", e.target.value)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={cambiarVisibilidad}
-                onMouseDown={manejarMousePassword}
-                edge="end"
-              >
-                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      ></TextField>
-      <Button
-        variant="contained"
-        fullWidth
-        color="primary"
-        onClick={inicioSesion}
-      >
-        Ingresar
-      </Button>
-      <Button
-        variant="contained"
-        fullWidth
-        color="primary"
-        onClick={() => cerrarSesion()}
-      >
-        Salir
-      </Button>
+    <div className="container">
+      <div className="container_login">
+        <img src={FondoLogo} className="fondologo" />
+        <div className="container_login_verification">
+          <div className="container_login_verification_inputs">
+            <InputCustom
+              fullWidth
+              style={{borderRadius: '5pt', marginTop: '10%'}}
+              label="Correo"
+              type="email"
+              error={mensajeError !== ""}
+              onChange={(e) => cambiarTexto("correo", e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <MailIcon style={{color: "#fff"}}/>
+                  </InputAdornment>
+                ),
+              }}
+            ></InputCustom>
+            <InputCustom
+              fullWidth
+              style={{borderRadius: '5pt', marginTop: '10%'}}
+              label="Contraseña"
+              type={mostrarPassword ? "text" : "password"}
+              error={mensajeError !== ""}
+              onChange={(e) => cambiarTexto("password", e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LockIcon style={{color: "#fff"}}/>
+                  </InputAdornment>
+                ),
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={cambiarVisibilidad}
+                      onMouseDown={manejarMousePassword}
+                      edge="end"
+                      style={{color: "#fff"}}
+                    >
+                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+
+              }}
+            ></InputCustom>
+          </div>
+          <div className="container_button_inicio">
+            <ButtonCustom
+              variant="contained"
+              color="primary"
+              onClick={inicioSesion}
+            >
+              Ingresar
+            </ButtonCustom>
+          </div>
+          <p style={{color: "#fff"}}>¿Eres nuevo en Inmobily?</p>
+          <div className="container_button_registro">
+            <ButtonCustom
+              style={{marginLeft: '5pt', marginRight: '5pt'}}
+              variant="contained"
+              color="primary"
+              onClick={inicioSesion}
+            >
+              Registrarse
+            </ButtonCustom>
+            <ButtonCustom
+              style={{marginLeft: '5pt', marginRight: '5pt'}}
+              variant="contained"
+              color="primary"
+              onClick={inicioSesion}
+            >
+              Registrar Agencia
+            </ButtonCustom>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
