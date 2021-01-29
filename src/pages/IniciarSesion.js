@@ -5,7 +5,6 @@ import {
   Button,
   InputAdornment,
   IconButton,
-  Link,
 } from "@material-ui/core";
 import {
   fade,
@@ -13,42 +12,43 @@ import {
   withStyles,
   makeStyles,
   createMuiTheme,
-} from '@material-ui/core/styles';
+} from "@material-ui/core/styles";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./IniciarSesion.css";
 import MailIcon from "@material-ui/icons/Mail";
 import LockIcon from "@material-ui/icons/Lock";
-import FondoLogo from "./fondologo.jpg";
+import FondoLogo from "../assets/fondologo.jpg";
+import { Link } from "react-router-dom";
 
 const ButtonCustom = withStyles((theme) => ({
   root: {
     color: "#fff",
     backgroundColor: "#41A48F",
-    '&:hover': {
+    "&:hover": {
       backgroundColor: "#215248",
-      
     },
   },
 }))(Button);
 
-const InputCustom = withStyles({      //Estilizar Inputs
+const InputCustom = withStyles({
+  //Estilizar Inputs
   root: {
-    '& label.Mui-focused': {
-      color: '#fff',
+    "& label.Mui-focused": {
+      color: "#fff",
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: '#fff',
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#fff",
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: '#fff',
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#fff",
       },
-      '&:hover fieldset': {
-        borderColor: '#fff',
-        borderBottomColor: '#fff',
+      "&:hover fieldset": {
+        borderColor: "#fff",
+        borderBottomColor: "#fff",
       },
-      '&.Mui-focused fieldset': {
-        borderColor: '#fff',
+      "&.Mui-focused fieldset": {
+        borderColor: "#fff",
       },
     },
   },
@@ -56,13 +56,16 @@ const InputCustom = withStyles({      //Estilizar Inputs
 
 // Pantalla de inicio de sesión
 const IniciarSesion = () => {
-  // Estados
-  const [usuario, setUsuario] = useState({
+  // Estado inicial
+  const datosIniciales = {
     correo: "",
     password: "",
-  });
+  };
 
-  const [mensajeError, setMensajeError] = useState("");
+  // Estados
+  const [usuario, setUsuario] = useState(datosIniciales);
+
+  const [mensajesError, setMensajesError] = useState(datosIniciales);
   const [mostrarPassword, setMostrarPassword] = useState(false);
 
   // Función llamada al cambiar el texto del input
@@ -82,9 +85,18 @@ const IniciarSesion = () => {
 
   // Función que inicia sesión al clickear el botón
   const inicioSesion = async () => {
+    const mensajesError = { ...datosIniciales };
+
+    if (usuario.correo.trim() === "") {
+      mensajesError.correo = "Ingresa tu correo, por favor";
+    }
+    if (usuario.password === "") {
+      mensajesError.password = "Ingresa tu contraseña, por favor";
+    }
+
     // Verifica que los input estén llenos
     if (usuario.correo.trim() === "" || usuario.password === "") {
-      setMensajeError("Ingresa tu correo y tu contraseña, por favor");
+      setMensajesError(mensajesError);
       return;
     }
 
@@ -93,21 +105,22 @@ const IniciarSesion = () => {
       await iniciarSesion(usuario.correo.trim(), usuario.password);
       alert("Inicio de sesión exitoso");
     } catch (error) {
-      let mensaje;
       if (error.code === "auth/invalid-email") {
-        mensaje = "Ingresa una dirección de correo electrónico válida";
-      } else if (
-        error.code === "auth/user-not-found" ||
-        error.code === "auth/wrong-password"
-      ) {
-        mensaje = "Correo o contraseña inválidos, intenta nuevamente";
-      } else {
-        mensaje = "Se produjo un error desconocido";
+        mensajesError.correo =
+          "Ingresa una dirección de correo electrónico válida";
+      } else if (error.code === "auth/user-not-found") {
+        mensajesError.correo =
+          "No hay usuarios con este correo, intenta de nuevo";
+      } else if (error.code === "auth/wrong-password") {
+        mensajesError.password = "Contraseña incorrecta, intenta nuevamente";
       }
-      setMensajeError(mensaje);
+      // TODO: Pensar en el error de desconexión
+      setMensajesError(mensajesError);
     }
   };
-  
+
+  console.log(mensajesError)
+
   return (
     <div className="container">
       <div className="container_login">
@@ -116,30 +129,32 @@ const IniciarSesion = () => {
           <div className="container_login_verification_inputs">
             <InputCustom
               fullWidth
-              style={{borderRadius: '5pt', marginTop: '10%'}}
+              style={{ borderRadius: "5pt", marginTop: "10%" }}
               label="Correo"
               type="email"
-              error={mensajeError !== ""}
+              error={mensajesError.correo !== ""}
+              helperText={mensajesError.correo}
               onChange={(e) => cambiarTexto("correo", e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MailIcon style={{color: "#fff"}}/>
+                    <MailIcon style={{ color: "#fff" }} />
                   </InputAdornment>
                 ),
               }}
             ></InputCustom>
             <InputCustom
               fullWidth
-              style={{borderRadius: '5pt', marginTop: '10%'}}
+              style={{ borderRadius: "5pt", marginTop: "10%" }}
               label="Contraseña"
               type={mostrarPassword ? "text" : "password"}
-              error={mensajeError !== ""}
+              error={mensajesError.password !== ""}
+              helperText={mensajesError.password}
               onChange={(e) => cambiarTexto("password", e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockIcon style={{color: "#fff"}}/>
+                    <LockIcon style={{ color: "#fff" }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -149,13 +164,12 @@ const IniciarSesion = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
-                      style={{color: "#fff"}}
+                      style={{ color: "#fff" }}
                     >
                       {mostrarPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ),
-
               }}
             ></InputCustom>
           </div>
@@ -168,22 +182,21 @@ const IniciarSesion = () => {
               Ingresar
             </ButtonCustom>
           </div>
-          <p style={{color: "#fff"}}>¿Eres nuevo en Inmobily?</p>
+          <p style={{ color: "#fff" }}>¿Eres nuevo en Inmobily?</p>
           <div className="container_button_registro">
-            <Link href="/signup" style={{textDecoration:'none'}}>
-              <ButtonCustom
-                style={{marginLeft: '5pt', marginRight: '5pt'}}
-                variant="contained"
-                color="primary"
-              >
-                Registrarse
-              </ButtonCustom>
-            </Link>
             <ButtonCustom
-              style={{marginLeft: '5pt', marginRight: '5pt'}}
+              component={Link}
+              to="/signup"
+              style={{ marginLeft: "5pt", marginRight: "5pt" }}
               variant="contained"
               color="primary"
-              onClick={inicioSesion}
+            >
+              Registrarse
+            </ButtonCustom>
+            <ButtonCustom
+              style={{ marginLeft: "5pt", marginRight: "5pt" }}
+              variant="contained"
+              color="primary"
             >
               Registrar Agencia
             </ButtonCustom>

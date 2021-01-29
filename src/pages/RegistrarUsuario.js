@@ -13,7 +13,7 @@ import {
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import "./RegistroUsuario.css"
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import logo from "./logo.png"
+import logo from "../assets/logo.png"
 
 // Página para registrar una cuenta nueva
 const RegistrarUsuario = () => {
