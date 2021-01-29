@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
 import "./App.css";
+import Cartera from "./pages/Cartera";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           {/* Registrar cuenta */}
           <Route path="/signup">
             <RegistrarUsuario />
+          </Route>
+          {/* test para sidebar */}
+          <Route path="/cartera">
+            <Cartera />
           </Route>
         </Switch>
       </Router>
