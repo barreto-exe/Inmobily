@@ -1,0 +1,48 @@
+.cRegistro {
+  background-color: #00797D;
+  width: 860px;
+  margin: auto;
+  padding: 10px 20px 20px 30px;
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.textFieldsReg{
+  background-color: #DDF3F5;
+}
+
+.titleRegistro {
+  color: #DDF3F5;
+}
+
+.rightAvatar{
+  align-self: center;
+  margin-left: 30%;
+  margin-top: 20%;
+  display: inline-flex;
+}
+
+.containerFlexing{
+  display: flex;
+  padding-bottom: 20px;
+}
+
+.div-foto-icon{
+    position: relative;
+    background-color: #DDF3F5;
+    height: 47px;
+    width: 47px;
+    margin-left: 220px;
+    top: -40px;
+    border-radius: 50%;
+}
+
+.container-avatar-icon{
+  margin-top: 40px;
+  padding-right: 80px;
+}
+
+.reg-boton{
+  width: 200px;
+}

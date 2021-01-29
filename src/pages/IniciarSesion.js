@@ -5,6 +5,7 @@ import {
   Button,
   InputAdornment,
   IconButton,
+  Link,
 } from "@material-ui/core";
 import {
   fade,
@@ -169,14 +170,15 @@ const IniciarSesion = () => {
           </div>
           <p style={{color: "#fff"}}>¿Eres nuevo en Inmobily?</p>
           <div className="container_button_registro">
-            <ButtonCustom
-              style={{marginLeft: '5pt', marginRight: '5pt'}}
-              variant="contained"
-              color="primary"
-              onClick={inicioSesion}
-            >
-              Registrarse
-            </ButtonCustom>
+            <Link href="/signup" style={{textDecoration:'none'}}>
+              <ButtonCustom
+                style={{marginLeft: '5pt', marginRight: '5pt'}}
+                variant="contained"
+                color="primary"
+              >
+                Registrarse
+              </ButtonCustom>
+            </Link>
             <ButtonCustom
               style={{marginLeft: '5pt', marginRight: '5pt'}}
               variant="contained"
