@@ -3,13 +3,13 @@ import Sidebar from "../components/Sidebar";
 import "./Cartera.css"
 
 
-const Cartera = () => {
+const Reportes = () => {
     return (
         <div className="container">
-                <h1>cartera uwu</h1>
+                <h1>Reportes uwu</h1>
                 
         </div>
     );
 };
 
-export default Cartera;
+export default Reportes;

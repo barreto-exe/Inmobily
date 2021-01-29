@@ -1,15 +1,15 @@
 import React from "react";
 import Sidebar from "../components/Sidebar";
-import "./Cartera.css"
+import "./Cartera.css";
 
 
-const Cartera = () => {
+const Libreta = () => {
     return (
         <div className="container">
-                <h1>cartera uwu</h1>
+                <h1>Libreta uwu</h1>
                 
         </div>
     );
 };
 
-export default Cartera;
+export default Libreta;

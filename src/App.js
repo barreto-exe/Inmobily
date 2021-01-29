@@ -4,6 +4,9 @@ import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
 import "./App.css";
 import Cartera from "./pages/Cartera";
+import Libreta from "./pages/Libreta";
+import Reportes from "./pages/Reportes";
+import Sidebar from "./components/Sidebar";
 
 function App() {
   return (
@@ -18,11 +21,21 @@ function App() {
           <Route path="/signup">
             <RegistrarUsuario />
           </Route>
-          {/* test para sidebar */}
+        {/* test para el sidebar */}
           <Route path="/cartera">
             <Cartera />
+            <Sidebar />
           </Route>
+          <Route path="/libreta">
+            <Libreta />
+            <Sidebar />
+          </Route>
+          <Route path="/reportes">
+            <Reportes />
+            <Sidebar />
+          </Route>          
         </Switch>
+
       </Router>
     </div>
   );

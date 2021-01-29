@@ -1,9 +1,13 @@
-body {
+/*body {
     background-color: #ffffff;
-}
+}*/
 
 .container {
     align-self: center;
     text-align: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    padding: 60px;
 }

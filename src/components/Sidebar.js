@@ -14,21 +14,22 @@ import { Drawer as MUIDrawer,
 import { Book, BusinessCenter, AssessmentOutlined, Settings, Notifications } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import logo from "../pages/logo.png"
 
 const sidebarAncho = 240;
 const useStyles = makeStyles((theme)=>({
-  paper: {
+  paper: { //para el sidebar
     background: '#0E4C57',
     color: '#A4A6B3',
     width: sidebarAncho,
     top: 60
   },
-  root: {
+  root: { //para los iconos
     color: '#A4A6B3',
     height: 24,
     width: 24
   }, 
-  menu: {
+  toolbar: {
     background: 'white',
     height: 60
   },
@@ -44,46 +45,60 @@ const Sidebar = props => {
     const { history } = props;
     const styles = useStyles();
     const classes = useStyles();
-    const opcionesMenu = [ 
+
+    const opcionesSidebar = [  //array con las opciones del sidebar
         { 
             texto: "Libreta",
             icono: <Book />,
-            //onClick: () => history.push("/")
+            onClick: () => history.push("/libreta")
         }, 
         {
             texto: "Cartera",
             icono: <BusinessCenter/>,
-            onClick: () => history.push("/cartera")
+            onClick: () => history.push("/cartera") //se pone el link a donde va direccionado
         },
         {
             texto: "Reportes",
             icono: <AssessmentOutlined/>,
-            //onClick: () => history.push("/signup")
+            onClick: () => history.push("/reportes")
+        }
+    ];
+
+    const opcionesToolbar = [
+        {
+            texto: "Ajustes", 
+            icono: <Settings/>, 
+            /*onClick: () => history.push("/")*/
         }
     ];
 
     return (
         <div>
-            <AppBar position="fixed" className={classes.menu}>
+            <AppBar position="fixed" className={classes.toolbar}>
                 <Toolbar>
+                    <img src={logo} width="auto" height="50px"/>
+
+                    <div style={{flexGrow: 1}} />
+
                     <MenuItem>
-                        <IconButton aria-label="show 11 new notifications" color="#000">
+                        <IconButton aria-label="notificaciones" color="#000">
                             <Badge badgeContent={11} color="secondary">
                                 <Notifications />
                             </Badge>
                         </IconButton>
                     </MenuItem>
+
                 </Toolbar>
             </AppBar>
 
             <MUIDrawer variant="permanent" classes={{paper: styles.paper}}  className={classes.sidebar}>
                 <div> 
-                    <p>¡Bienvenido/a!</p>
+                    <p style={{ paddingTop: '15px', textAlign: "center"}}>¡Bienvenido/a!</p> 
                 </div>
 
                 <div>
                     <List>
-                        {opcionesMenu.map((item, index)=> {
+                        {opcionesSidebar.map((item, index)=> {
                             const { texto, icono, onClick } = item;
                             return(
                                 <ListItem button key={texto} onClick={onClick}>
@@ -95,10 +110,10 @@ const Sidebar = props => {
                     </List>
                 </div>
 
-                <div style={{ paddingTop:'150px' }}> 
+                <div style={{ paddingTop:'220px' }}> 
                     <Divider />
                     <List>
-                        {[{texto: "Ajustes", icono: <Settings/>, /*onClick: () => history.push("/")*/}].map((item, index)=> {
+                        {opcionesToolbar.map((item, index)=> {
                             const { texto, icono, onClick } = item
                             return (
                                 <ListItem button key={texto} onClick={onClick}>
