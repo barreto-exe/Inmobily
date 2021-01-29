@@ -4,9 +4,16 @@ import {
   TextField,
   Button,
   InputAdornment,
+  Icon,
+  Avatar,
+  makeStyles,
   IconButton,
+  Link,
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
+import "./RegistroUsuario.css"
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import logo from "./logo.png"
 
 // Página para registrar una cuenta nueva
 const RegistrarUsuario = () => {
@@ -122,123 +129,177 @@ const RegistrarUsuario = () => {
 
   return (
     <div>
-      <h1>Registrar Usuario</h1>
-      <TextField
-        fullWidth
-        label="Nombre"
-        variant="outlined"
-        required
-        error={mensajesError.nombre !== ""}
-        helperText={mensajesError.nombre}
-        onChange={(e) => cambiarTexto("nombre", e.target.value)}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Apellido"
-        variant="outlined"
-        required
-        error={mensajesError.apellido !== ""}
-        helperText={mensajesError.apellido}
-        onChange={(e) => cambiarTexto("apellido", e.target.value)}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Correo"
-        variant="outlined"
-        type="email"
-        required
-        error={mensajesError.correo !== ""}
-        helperText={mensajesError.correo}
-        onChange={(e) => cambiarTexto("correo", e.target.value)}
-      ></TextField>
-      {/* TODO: Mejorar la cédula por lo que mencionó Rondón */}
-      <TextField
-        fullWidth
-        label="Cédula"
-        variant="outlined"
-        required
-        error={mensajesError.cedula !== ""}
-        helperText={mensajesError.cedula}
-        onChange={(e) => cambiarTexto("cedula", e.target.value)}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Teléfono"
-        variant="outlined"
-        error={mensajesError.telefono !== ""}
-        helperText={mensajesError.telefono}
-        onChange={(e) => cambiarTexto("telefono", e.target.value)}
-      ></TextField>
-      {/* TODO: Considerar en el futuro una forma distinta de ingresar la dirección */}
-      <TextField
-        fullWidth
-        label="Dirección"
-        variant="outlined"
-        required
-        error={mensajesError.direccion !== ""}
-        helperText={mensajesError.direccion}
-        onChange={(e) => cambiarTexto("direccion", e.target.value)}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Contraseña"
-        type={mostrarPassword ? "text" : "password"}
-        variant="outlined"
-        required
-        error={mensajesError.password !== ""}
-        helperText={mensajesError.password}
-        onChange={(e) => cambiarTexto("password", e.target.value)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={cambiarVisibilidad}
-                onMouseDown={manejarMousePassword}
-                edge="end"
-              >
-                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+      <div style={{width:'913px', margin:'30px auto auto auto'}}>
+        <img src={logo} width="300px" height="auto" />
+      </div>
+      <div className="cRegistro"> 
+        
+        <div>
+          <h1 className="titleRegistro">Registrar Usuario</h1>
+          <div className="containerFlexing">
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              label="Nombre"
+              variant="filled"
+              required
+              style={{marginRight: "20px"}}
+              error={mensajesError.nombre !== ""}
+              helperText={mensajesError.nombre}
+              onChange={(e) => cambiarTexto("nombre", e.target.value)}
+            ></TextField>
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              label="Apellido"
+              variant="filled"
+              required
+              error={mensajesError.apellido !== ""}
+              helperText={mensajesError.apellido}
+              onChange={(e) => cambiarTexto("apellido", e.target.value)}
+            ></TextField>
+          </div>
+          
+          <TextField
+            fullWidth
+            className="textFieldsReg"
+            label="Correo"
+            type="email"
+            variant="filled"
+            required
+            style={{marginBottom: "20px"}}
+            error={mensajesError.correo !== ""}
+            helperText={mensajesError.correo}
+            onChange={(e) => cambiarTexto("correo", e.target.value)}
+          ></TextField>
+          {/* TODO: Mejorar la cédula por lo que mencionó Rondón */}
+          <div className="containerFlexing">
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              label="Cédula"
+              variant="filled"
+              required
+              style={{marginRight: "20px"}}
+              error={mensajesError.cedula !== ""}
+              helperText={mensajesError.cedula}
+              onChange={(e) => cambiarTexto("cedula", e.target.value)}
+            ></TextField>
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              label="Teléfono"
+              variant="filled"
+              error={mensajesError.telefono !== ""}
+              helperText={mensajesError.telefono}
+              onChange={(e) => cambiarTexto("telefono", e.target.value)}
+            ></TextField>
+          </div>
+          {/* TODO: Considerar en el futuro una forma distinta de ingresar la dirección */}
+          <TextField
+            fullWidth
+            label="Dirección"
+            className="textFieldsReg"
+            variant="filled"
+            required
+            style={{marginBottom: "20px"}}
+            error={mensajesError.direccion !== ""}
+            helperText={mensajesError.direccion}
+            onChange={(e) => cambiarTexto("direccion", e.target.value)}
+          ></TextField>
+          <div className="containerFlexing">
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              style={{marginRight:"20px"}}
+              label="Contraseña"
+              type={mostrarPassword ? "text" : "password"}
+              variant="filled"
+              required
+              error={mensajesError.password !== ""}
+              helperText={mensajesError.password}
+              onChange={(e) => cambiarTexto("password", e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={cambiarVisibilidad}
+                      onMouseDown={manejarMousePassword}
+                      edge="end"
+                    >
+                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+            <TextField
+              fullWidth
+              className="textFieldsReg"
+              label="Repetir Contraseña"
+              type={mostrarPassword ? "text" : "password"}
+              variant="filled"
+              required
+              error={mensajesError.confirmacion !== ""}
+              helperText={mensajesError.confirmacion}
+              onChange={(e) => cambiarTexto("confirmacion", e.target.value)}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={cambiarVisibilidad}
+                      onMouseDown={manejarMousePassword}
+                      edge="end"
+                    >
+                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            ></TextField>
+          </div>
+          
+          
+          
+        </div>
+        <div className="container-avatar-icon">
+          <div className="rightAvatar">            
+            <Avatar style={{fontSize: '40px' ,height: '220px', width: '220px'}} alt="Foto de perfil" src={foto && URL.createObjectURL(foto)}/>
+            <input accept="image/*" style={{display: 'none'}} id="icono-boton-archivo"  type="file" 
+            onChange={seleccionarFoto}/>
+            
+          </div>
+          <div className="div-foto-icon">
+            <label htmlFor="icono-boton-archivo" className="foto-icono" >
+              <IconButton aria-label='upload picture' color="inherit" component="span" size="medium">
+                <PhotoCamera/>
               </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      ></TextField>
-      <TextField
-        fullWidth
-        label="Repetir Contraseña"
-        type={mostrarPassword ? "text" : "password"}
-        variant="outlined"
-        required
-        error={mensajesError.confirmacion !== ""}
-        helperText={mensajesError.confirmacion}
-        onChange={(e) => cambiarTexto("confirmacion", e.target.value)}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                aria-label="toggle password visibility"
-                onClick={cambiarVisibilidad}
-                onMouseDown={manejarMousePassword}
-                edge="end"
-              >
-                {mostrarPassword ? <Visibility /> : <VisibilityOff />}
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      ></TextField>
-      {/* Ocultar el input y que solo se muestre un botón */}
-      <input type="file" accept="image/*" onChange={seleccionarFoto}></input>
-      {/* TODO: Colocar una imagen predeterminada */}
-      <img src={foto && URL.createObjectURL(foto)} alt="Foto de perfil" />
-      <Button
-        variant="contained"
-        fullWidth
-        color="primary"
-        onClick={registrarCuenta}
-      >
-        Registrarse
-      </Button>
+            </label>
+            <div className="reg-boton">
+              <Button
+                variant="contained"
+                fullWidth
+                style={{right:'130px', top: '40px'}}
+                color="primary"
+                onClick={registrarCuenta}>
+                Registrarse
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="reg-boton">
+        <Button
+          variant="contained"
+          fullWidth
+          color="primary"
+          onClick={registrarCuenta}>
+          Registrarse
+        </Button>
+      </div> */}
+      
     </div>
   );
 };
