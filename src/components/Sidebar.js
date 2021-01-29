@@ -14,7 +14,7 @@ import { Drawer as MUIDrawer,
 import { Book, BusinessCenter, AssessmentOutlined, Settings, Notifications } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import logo from "../pages/logo.png"
+import logo from "../assets/logo.png"
 
 const sidebarAncho = 240;
 const useStyles = makeStyles((theme)=>({
