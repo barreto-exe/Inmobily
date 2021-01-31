@@ -2,37 +2,36 @@ body {
     background-color: #0E4C57;
 }
 
+
 .container {
     align-self: center;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
 }
 
-.container_button_inicio {
+.container-button-inicio {
     margin-bottom: 5%;
 }
 
-.container_button_registro {
+.container-button-registro {
     padding-bottom: 5%;
 }
 
-.container_login_verification_inputs {
+.container-login-verification-inputs {
     margin: 15%;
     margin-top: -5pt;
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .fondologo {
-    margin-top: 10%;
     width: 300pt;
     border-top-right-radius: 10pt;
     border-top-left-radius: 10pt;
 }
 
-.container_login_verification {
+.container-login-verification {
     background-color: #00797D;
     width: 300pt;
     border-bottom-right-radius: 10pt;

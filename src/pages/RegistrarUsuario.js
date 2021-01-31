@@ -10,7 +10,7 @@ import {
   IconButton,
   Link,
 } from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { VisibilityOutlined, VisibilityOffOutlined } from "@material-ui/icons";
 import "./RegistroUsuario.css"
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import logo from "../assets/logo.png"
@@ -139,7 +139,7 @@ const RegistrarUsuario = () => {
           <div className="containerFlexing">
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               label="Nombre"
               variant="filled"
               required
@@ -150,7 +150,7 @@ const RegistrarUsuario = () => {
             ></TextField>
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               label="Apellido"
               variant="filled"
               required
@@ -162,7 +162,7 @@ const RegistrarUsuario = () => {
           
           <TextField
             fullWidth
-            className="textFieldsReg"
+            className="textFields"
             label="Correo"
             type="email"
             variant="filled"
@@ -176,7 +176,7 @@ const RegistrarUsuario = () => {
           <div className="containerFlexing">
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               label="Cédula"
               variant="filled"
               required
@@ -187,7 +187,7 @@ const RegistrarUsuario = () => {
             ></TextField>
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               label="Teléfono"
               variant="filled"
               error={mensajesError.telefono !== ""}
@@ -199,7 +199,7 @@ const RegistrarUsuario = () => {
           <TextField
             fullWidth
             label="Dirección"
-            className="textFieldsReg"
+            className="textFields"
             variant="filled"
             required
             style={{marginBottom: "20px"}}
@@ -210,7 +210,7 @@ const RegistrarUsuario = () => {
           <div className="containerFlexing">
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               style={{marginRight:"20px"}}
               label="Contraseña"
               type={mostrarPassword ? "text" : "password"}
@@ -227,8 +227,9 @@ const RegistrarUsuario = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
+                      style={{color: "#191e34"}}
                     >
-                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -236,7 +237,7 @@ const RegistrarUsuario = () => {
             ></TextField>
             <TextField
               fullWidth
-              className="textFieldsReg"
+              className="textFields"
               label="Repetir Contraseña"
               type={mostrarPassword ? "text" : "password"}
               variant="filled"
@@ -252,8 +253,9 @@ const RegistrarUsuario = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
+                      style={{color: "#191e34"}}
                     >
-                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                     </IconButton>
                   </InputAdornment>
                 ),

@@ -13,46 +13,13 @@ import {
   makeStyles,
   createMuiTheme,
 } from "@material-ui/core/styles";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import { VisibilityOutlined, VisibilityOffOutlined } from "@material-ui/icons";
 import "./IniciarSesion.css";
-import MailIcon from "@material-ui/icons/Mail";
-import LockIcon from "@material-ui/icons/Lock";
+import MailIcon from "@material-ui/icons/MailOutlined";
+import LockIcon from "@material-ui/icons/LockOutlined";
 import FondoLogo from "../assets/fondologo.jpg";
 import { Link } from "react-router-dom";
 
-const ButtonCustom = withStyles((theme) => ({
-  root: {
-    color: "#fff",
-    backgroundColor: "#41A48F",
-    "&:hover": {
-      backgroundColor: "#215248",
-    },
-  },
-}))(Button);
-
-const InputCustom = withStyles({
-  //Estilizar Inputs
-  root: {
-    "& label.Mui-focused": {
-      color: "#fff",
-    },
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#fff",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#fff",
-      },
-      "&:hover fieldset": {
-        borderColor: "#fff",
-        borderBottomColor: "#fff",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#fff",
-      },
-    },
-  },
-})(TextField);
 
 // Pantalla de inicio de sesión
 const IniciarSesion = () => {
@@ -123,30 +90,33 @@ const IniciarSesion = () => {
 
   return (
     <div className="container">
-      <div className="container_login">
+      <div className="container-login">
         <img src={FondoLogo} className="fondologo" />
-        <div className="container_login_verification">
-          <div className="container_login_verification_inputs">
-            <InputCustom
+        <div className="container-login-verification">
+          <div className="container-login-verification-inputs">
+            <TextField
               fullWidth
-              style={{ borderRadius: "5pt", marginTop: "10%" }}
-              label="Correo"
-              type="email"
+              className="textFields"
+              label="Nombre"
+              variant="filled"
+              style={{marginTop: "5%"}}
               error={mensajesError.correo !== ""}
               helperText={mensajesError.correo}
-              onChange={(e) => cambiarTexto("correo", e.target.value)}
+              onChange={(e) => cambiarTexto("Email", e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <MailIcon style={{ color: "#fff" }} />
+                    <MailIcon style={{color: "#191e34"}} />
                   </InputAdornment>
                 ),
               }}
-            ></InputCustom>
-            <InputCustom
+            ></TextField>
+            <TextField
               fullWidth
-              style={{ borderRadius: "5pt", marginTop: "10%" }}
+              className="textFields"
               label="Contraseña"
+              style={{marginTop: "5%"}}
+              variant="filled"
               type={mostrarPassword ? "text" : "password"}
               error={mensajesError.password !== ""}
               helperText={mensajesError.password}
@@ -154,7 +124,7 @@ const IniciarSesion = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <LockIcon style={{ color: "#fff" }} />
+                    <LockIcon style={{color: "#191e34"}} />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -164,27 +134,27 @@ const IniciarSesion = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
-                      style={{ color: "#fff" }}
+                      style={{color: "#191e34"}}
                     >
-                      {mostrarPassword ? <Visibility /> : <VisibilityOff />}
+                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
-            ></InputCustom>
+            ></TextField>
           </div>
-          <div className="container_button_inicio">
-            <ButtonCustom
+          <div className="container-button-inicio">
+            <Button
               variant="contained"
               color="primary"
               onClick={inicioSesion}
             >
               Ingresar
-            </ButtonCustom>
+            </Button>
           </div>
           <p style={{ color: "#fff" }}>¿Eres nuevo en Inmobily?</p>
-          <div className="container_button_registro">
-            <ButtonCustom
+          <div className="container-button-registro">
+            <Button
               component={Link}
               to="/signup"
               style={{ marginLeft: "5pt", marginRight: "5pt" }}
@@ -192,14 +162,14 @@ const IniciarSesion = () => {
               color="primary"
             >
               Registrarse
-            </ButtonCustom>
-            <ButtonCustom
+            </Button>
+            <Button
               style={{ marginLeft: "5pt", marginRight: "5pt" }}
               variant="contained"
               color="primary"
             >
               Registrar Agencia
-            </ButtonCustom>
+            </Button>
           </div>
         </div>
       </div>
