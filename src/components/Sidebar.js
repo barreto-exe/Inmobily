@@ -55,7 +55,7 @@ const Sidebar = props => {
         {
             texto: "Cartera",
             icono: <BusinessCenter/>,
-            onClick: () => history.push("/cartera") //se pone el link a donde va direccionado
+            onClick: () => history.push("/") //se pone el link a donde va direccionado
         },
         {
             texto: "Reportes",
