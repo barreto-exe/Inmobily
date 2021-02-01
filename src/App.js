@@ -75,11 +75,11 @@ function App() {
               </Ruta>
               {/* test para el sidebar */}
               <Ruta exact path="/" auth>
-                <Cartera />
+                <Libreta />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/libreta" auth>
-                <Libreta />
+              <Ruta path="/cartera" auth>
+                <Cartera />
                 <Sidebar />
               </Ruta>
               <Ruta path="/reportes" auth>
