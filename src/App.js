@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
+import RegistrarAgencia from "./pages/RegistrarAgencia";
 import Cartera from "./pages/Cartera";
 import Libreta from "./pages/Libreta";
 import Reportes from "./pages/Reportes";
@@ -68,6 +69,10 @@ function App() {
             {/* Iniciar sesión TODO: Luego debe cambiarse la ruta a "/login" */}
             <Route exact path="/">
               <IniciarSesion />
+            </Route>
+            {/* Registrar agencia */}
+            <Route path="/signupagencia">
+              <RegistrarAgencia />
             </Route>
             {/* Registrar cuenta */}
             <Route path="/signup">
