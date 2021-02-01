@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { UsuarioProvider } from "./contexts/UsuarioContext";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
 import Cartera from "./pages/Cartera";
@@ -13,7 +14,6 @@ import {
 
 //Temas
 const theme = createMuiTheme({
-
   palette: {
     //Botones
     primary: {
@@ -31,7 +31,7 @@ const theme = createMuiTheme({
     quaternary: {
       main: "#828282",
     },
-   //Azul oscuro
+    //Azul oscuro
     quinary: {
       main: "#191E34",
     },
@@ -45,50 +45,50 @@ const theme = createMuiTheme({
     },
     //Blanquito
     octonary: {
-      main: "#FFFFD3"
+      main: "#FFFFD3",
     },
     //Green 3
     nonary: {
-      main: "#6FCF97"
+      main: "#6FCF97",
     },
     //Blue 1
     denary: {
-      main: "#2F80ED"
+      main: "#2F80ED",
     },
   },
-
-}); 
+});
 
 function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Router>
-          <Switch>
-            {/* Iniciar sesión TODO: Luego debe cambiarse la ruta a "/login" */}
-            <Route exact path="/">
-              <IniciarSesion />
-            </Route>
-            {/* Registrar cuenta */}
-            <Route path="/signup">
-              <RegistrarUsuario />
-            </Route>
-          {/* test para el sidebar */}
-            <Route path="/cartera">
-              <Cartera />
-              <Sidebar />
-            </Route>
-            <Route path="/libreta">
-              <Libreta />
-              <Sidebar />
-            </Route>
-            <Route path="/reportes">
-              <Reportes />
-              <Sidebar />
-            </Route>          
-          </Switch>
-
-        </Router>
+        <UsuarioProvider>
+          <Router>
+            <Switch>
+              {/* Iniciar sesión TODO: Luego debe cambiarse la ruta a "/login" */}
+              <Route exact path="/">
+                <IniciarSesion />
+              </Route>
+              {/* Registrar cuenta */}
+              <Route path="/signup">
+                <RegistrarUsuario />
+              </Route>
+              {/* test para el sidebar */}
+              <Route path="/cartera">
+                <Cartera />
+                <Sidebar />
+              </Route>
+              <Route path="/libreta">
+                <Libreta />
+                <Sidebar />
+              </Route>
+              <Route path="/reportes">
+                <Reportes />
+                <Sidebar />
+              </Route>
+            </Switch>
+          </Router>
+        </UsuarioProvider>
       </ThemeProvider>
     </div>
   );
