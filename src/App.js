@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
+import Ruta from "./components/Ruta";
 import { UsuarioProvider } from "./contexts/UsuarioContext";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
@@ -65,27 +66,26 @@ function App() {
         <UsuarioProvider>
           <Router>
             <Switch>
-              {/* Iniciar sesión TODO: Luego debe cambiarse la ruta a "/login" */}
-              <Route exact path="/">
+              <Ruta path="/login">
                 <IniciarSesion />
-              </Route>
+              </Ruta>
               {/* Registrar cuenta */}
-              <Route path="/signup">
+              <Ruta path="/signup">
                 <RegistrarUsuario />
-              </Route>
+              </Ruta>
               {/* test para el sidebar */}
-              <Route path="/cartera">
+              <Ruta exact path="/" auth>
                 <Cartera />
                 <Sidebar />
-              </Route>
-              <Route path="/libreta">
+              </Ruta>
+              <Ruta path="/libreta" auth>
                 <Libreta />
                 <Sidebar />
-              </Route>
-              <Route path="/reportes">
+              </Ruta>
+              <Ruta path="/reportes" auth>
                 <Reportes />
                 <Sidebar />
-              </Route>
+              </Ruta>
             </Switch>
           </Router>
         </UsuarioProvider>
