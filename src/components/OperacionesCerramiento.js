@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { obtenerOperacionesAsignadas } from "../firebase/functions";
+import { obtenerOperacionesCerramiento } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
-const OperacionesAsignadas = () => {
+const OperacionesCerramiento = () => {
   const [operaciones, setOperciones] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -12,7 +12,7 @@ const OperacionesAsignadas = () => {
 
   useEffect(() => {
     setCargando(true); // TODO: Quitar esta carga si no genera problemas
-    const unsubscribe = obtenerOperacionesAsignadas(usuario, (operaciones) => {
+    const unsubscribe = obtenerOperacionesCerramiento(usuario, (operaciones) => {
       setOperaciones(operaciones);
       setCargando(false);
     });
@@ -22,9 +22,9 @@ const OperacionesAsignadas = () => {
 
   return (
     <div>
-      <h1>Operaciones Asignadas</h1>
+      <h1>Operaciones de Cerramiento</h1>
     </div>
   );
 };
 
-export default OperacionesAsignadas;
+export default OperacionesCerramiento;

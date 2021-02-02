@@ -71,6 +71,10 @@ export const obtenerGerentes = async (agenciaId) => {
   return promesa.docs;
 };
 
+// TODO: Para las siguientes cuatro funciones considerar (de ser relevante) si están culminadas las operaciones
+
+// Consultar las operaciones asignadas a un asesor
+// Recibe al asesor y la función que se ejecutará luego de obtener las operaciones
 export const obtenerOperacionesAsignadas = (asesor, func) => {
   return db
     .collection(`agencias/${asesor.agenciaID}/operaciones`)
@@ -83,4 +87,55 @@ export const obtenerOperacionesAsignadas = (asesor, func) => {
       });
       func(operaciones);
     });
+};
+
+// TODO: De ser posible, considerar luego la simplificación de las siguientes tres funciones
+// Para que reciban además el tipo de operación, si es que no difieren en nada más
+
+// Consultar las operaciones de captación de una agencia
+// Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
+export const obtenerOperacionesCaptacion = (agenciaID, func) => {
+  return db
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .where("tipo", "==", "captacion")
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
+    });
+};
+
+// Consultar las operaciones de cerramiento de una agencia
+// Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
+export const obtenerOperacionesCerramiento = (agenciaID, func) => {
+  return db
+  .collection(`agencias/${agenciaID}/operaciones`)
+  .where("tipo", "==", "cerramiento")
+  .onSnapshot((snapshot) => {
+    const operaciones = snapshot.docs.map((doc) => {
+      const operacion = doc.data();
+      operacion.id = doc.id;
+      return operacion;
+    });
+    func(operaciones);
+  });
+};
+
+// Consultar las operaciones unificadas de una agencia
+// Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
+export const obtenerOperacionesUnificadas = (agenciaID, func) => {
+  return db
+  .collection(`agencias/${agenciaID}/operaciones`)
+  .where("tipo", "==", "unificada")
+  .onSnapshot((snapshot) => {
+    const operaciones = snapshot.docs.map((doc) => {
+      const operacion = doc.data();
+      operacion.id = doc.id;
+      return operacion;
+    });
+    func(operaciones);
+  });
 };
