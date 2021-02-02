@@ -9,8 +9,10 @@ const OperacionesAsignadas = () => {
   const usuario = useUsuario();
 
   useEffect(() => {
-    const unsubscribe = obtenerOperacionesAsignadas(usuario, () => {
-
+    setCargando(true);
+    const unsubscribe = obtenerOperacionesAsignadas(usuario, (operaciones) => {
+      setOperaciones(operaciones);
+      setCargando(false);
     });
 
     return unsubscribe;

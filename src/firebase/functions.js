@@ -30,8 +30,10 @@ export const registrarUsuario = async (usuario, foto) => {
 
   const uid = respuesta.user.uid;
 
-  const url = await subirArchivo(foto, `imagenes/${uid}.png`);
-
+  let url = "";
+  if (foto) {
+    url = await subirArchivo(foto, `imagenes/${uid}.png`);
+  }
   // Copia los datos del usuario
   const datos = { ...usuario, fotoURL: url };
   delete datos.password;
@@ -69,18 +71,16 @@ export const obtenerGerentes = async (agenciaId) => {
   return promesa.docs;
 };
 
-export const obtenerOperacionesAsignadas = (asesorID, func) => {
-  // return db
-  //   .collection("tutorings")
-  //   .where("degrees", "array-contains", degree)
-  //   .onSnapshot((snapshot) => {
-  //     const tutorings = snapshot.docs.map((doc) => {
-  //       const tutoring = doc.data();
-  //       tutoring.id = doc.id;
-  //       tutoring.startTime = new Date(tutoring.startTime * 1000);
-  //       tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
-  //       return tutoring;
-  //     });
-  //     func(tutorings);
-  //   });
+export const obtenerOperacionesAsignadas = (asesor, func) => {
+  return db
+    .collection(`agencias/${asesor.agenciaID}/operaciones`)
+    .where("asesores", "array-contains", asesor.uid)
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
+    });
 };
