@@ -87,13 +87,13 @@ function App() {
                 <Reportes />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/ajustes">
+              <Ruta path="/ajustes" auth>
                 <AjustesPerfil />
                 <Sidebar />
-            </Ruta>
+              </Ruta>
             </Switch>
           </Router>
-        </UsuarioProvider>            
+        </UsuarioProvider>
       </ThemeProvider>
     </div>
   );
