@@ -81,19 +81,23 @@ function App() {
               </Ruta>
 
               {/* Paginas con sidebar */}
-              <Ruta exact path="/" auth> {/* Libreta */}
+              {/* Libreta */}
+              <Ruta exact path="/" auth> 
                 <Libreta />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/cartera" auth> {/* Cartera */}
+              {/* Cartera */}
+              <Ruta path="/cartera" auth> 
                 <Cartera />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/reportes" auth> {/* Reportes */}
+              {/* Reportes */}
+              <Ruta path="/reportes" auth> 
                 <Reportes />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/ajustes" auth> {/* Ajustes del perfil */}
+              {/* Ajustes del perfil */}
+              <Ruta path="/ajustes" auth> 
                 <AjustesPerfil />
                 <Sidebar />
               </Ruta>

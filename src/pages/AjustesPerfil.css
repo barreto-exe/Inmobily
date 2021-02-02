@@ -5,13 +5,14 @@
     height: 100%;
     left: 0;
     top: 0;   
+    overflow:auto;
 }
 
 .container-menu{
     position: relative;
     top: 90px;
     width: 1080px;
-    height: 800px;
+    height: 700px;
     align-self: center;
     margin: 10px auto;
     left: 120px;
@@ -21,5 +22,26 @@
     position: absolute;
     text-align: left;
     left: 490px;
-    top: 25px;
+    top: 18px;
+}
+
+.inputs-ajustes{
+    width: 420px;
+}
+
+.inputs-ajustes-container{
+    position:absolute;
+    top: 150px;
+    left: 70px; 
+}
+
+.input-flex{
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.inputs-password{
+    position: absolute;
+    left: 450px;
+    top: 261px;
 }
