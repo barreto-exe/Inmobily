@@ -110,7 +110,6 @@ const RegistrarUsuario = () => {
     // Intenta registrar al usuario
     try {
       await registrarUsuario(usuario, foto);
-      alert("Registro exitoso");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         mensajesError.correo =

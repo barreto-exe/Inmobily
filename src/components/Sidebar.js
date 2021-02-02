@@ -44,7 +44,7 @@ const Sidebar = props => {
         { 
             texto: "Libreta",
             icono: <Book />,
-            onClick: () => history.push("/libreta")
+            onClick: () => history.push("/")
         }, 
         {
             texto: "Cartera",

@@ -70,7 +70,6 @@ const IniciarSesion = () => {
     // Inicia sesión
     try {
       await iniciarSesion(usuario.correo.trim(), usuario.password);
-      alert("Inicio de sesión exitoso");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         mensajesError.correo =
@@ -85,8 +84,6 @@ const IniciarSesion = () => {
       setMensajesError(mensajesError);
     }
   };
-
-  console.log(mensajesError)
 
   return (
     <div className="container">
