@@ -11,6 +11,10 @@ body {
     align-items: center;
 }
 
+.container-login {
+    padding-top: 3%;
+}
+
 .container-button-inicio {
     margin-bottom: 5%;
 }
