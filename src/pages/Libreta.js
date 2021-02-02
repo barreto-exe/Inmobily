@@ -1,13 +1,13 @@
 import React from "react";
-import Sidebar from "../components/Sidebar";
 import "./Cartera.css";
 
 
 const Libreta = () => {
     return (
-        <div className="container">
+        <div className={"fondo"}>
+            <div className={"container-menu"}>
                 <h1>Libreta uwu</h1>
-                
+            </div>    
         </div>
     );
 };

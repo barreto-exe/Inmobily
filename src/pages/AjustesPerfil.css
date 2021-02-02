@@ -1,0 +1,25 @@
+.fondo{
+    background-color:white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;   
+}
+
+.container-menu{
+    position: relative;
+    top: 90px;
+    width: 1080px;
+    height: 800px;
+    align-self: center;
+    margin: 10px auto;
+    left: 120px;
+}
+
+.info{
+    position: absolute;
+    text-align: left;
+    left: 490px;
+    top: 25px;
+}

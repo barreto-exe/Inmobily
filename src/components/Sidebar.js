@@ -1,16 +1,6 @@
 import React from "react";
-import { Drawer as MUIDrawer,
-    ListItem,
-    List,
-    ListItemIcon,
-    ListItemText,
-    AppBar,
-    Toolbar,
-    Divider,
-    Badge,
-    MenuItem,
-    IconButton
-} from "@material-ui/core";
+import { Drawer as MUIDrawer, ListItem, List, ListItemIcon, ListItemText, AppBar, Toolbar,
+    Divider, Badge, MenuItem, IconButton, Popover, Typography, Avatar} from "@material-ui/core";
 import { Book, BusinessCenter, AssessmentOutlined, Settings, Notifications } from "@material-ui/icons";
 import { withRouter } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,6 +28,10 @@ const useStyles = makeStyles((theme)=>({
     flexDirection: "column",
     padding: "20px",
     alignment: "center"
+  },
+  typography:{
+      padding: theme.spacing(2),
+      fontSize: 12,
   }
 }));
 
@@ -64,13 +58,25 @@ const Sidebar = props => {
         }
     ];
 
-    const opcionesToolbar = [
+    const opcionesSidebarAbajo = [
         {
             texto: "Ajustes", 
             icono: <Settings/>, 
-            /*onClick: () => history.push("/")*/
+            onClick: () => history.push("/ajustes")
         }
     ];
+    const [anchorEl, setAnchorEl] = React.useState(null);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     return (
         <div>
@@ -81,11 +87,36 @@ const Sidebar = props => {
                     <div style={{flexGrow: 1}} />
 
                     <MenuItem>
-                        <IconButton aria-label="notificaciones" color="#000">
-                            <Badge badgeContent={11} color="secondary">
+                        <IconButton aria-label="notificaciones" color="#000" onClick={handleClick}>
+                            <Badge color="primary" variant="dot">
                                 <Notifications />
                             </Badge>
                         </IconButton>
+                        {/*TODO: cambiar a <Menu> en vez de <Popover> */}
+                        <Popover
+                        id={id}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'left',
+                        }}
+                        >
+                            <Typography className={classes.typography}>Aqui van las notificaciones.</Typography>
+                            <Divider />
+                            <Typography className={classes.typography}>Se le ha asignado una operación nueva.</Typography>
+                            <Divider />
+                            <Typography className={classes.typography}>Ha sido retirado de una actividad.</Typography>
+                        </Popover>
+                    </MenuItem>
+
+                    <MenuItem>
+                        <Avatar src="/broken-image.jpg"/>
                     </MenuItem>
 
                 </Toolbar>
@@ -113,7 +144,7 @@ const Sidebar = props => {
                 <div style={{ paddingTop:'220px' }}> 
                     <Divider />
                     <List>
-                        {opcionesToolbar.map((item, index)=> {
+                        {opcionesSidebarAbajo.map((item, index)=> {
                             const { texto, icono, onClick } = item
                             return (
                                 <ListItem button key={texto} onClick={onClick}>

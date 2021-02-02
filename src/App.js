@@ -6,6 +6,7 @@ import Cartera from "./pages/Cartera";
 import Libreta from "./pages/Libreta";
 import Reportes from "./pages/Reportes";
 import Sidebar from "./components/Sidebar";
+import AjustesPerfil from "./pages/AjustesPerfil";
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
   ThemeProvider,
@@ -85,7 +86,11 @@ function App() {
             <Route path="/reportes">
               <Reportes />
               <Sidebar />
-            </Route>          
+            </Route>
+            <Route path="/ajustes">
+              <AjustesPerfil />
+              <Sidebar />
+            </Route>            
           </Switch>
 
         </Router>
