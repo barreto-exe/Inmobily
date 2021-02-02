@@ -1,0 +1,62 @@
+.registro-agencia-container{
+  display: flex;
+  flex-direction: column;
+  margin: 5% 20% 10% 15%;
+}
+
+.registro-agencia-subcontainer{
+  background-color: #00797D;
+  display: flex;
+  height: 80%;
+  border-radius: 10pt;
+}
+
+.title-input-registroa-container{
+  display: flex;
+  flex: .6;
+  flex-direction: column;
+  margin: 15px 0px 15px 40px;
+}
+
+.title-input-registroa-container h1{
+  color: #DDF3F5;
+}
+
+.inputs-registroa-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.inputs-registroa{
+  background-color: #DDF3F5;
+}
+
+.photo-registroa-container{
+  display: flex;
+  margin-top: 5%;
+  flex: .4;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-registroa-container p{
+  color: #DDF3F5;
+  font-weight: bold;
+}
+
+.button-registroa{
+  position: relative;
+  left: 127px;
+  bottom: 50px;
+}
+
+.registroa-foto-icon{
+  background-color: #DDF3F5;
+  height: 47px;
+  width: 47px;
+  border-radius: 50%;
+  position: relative;
+  top: -40px;
+  left: 120px;
+}

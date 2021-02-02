@@ -4,6 +4,7 @@ import Ruta from "./components/Ruta";
 import { UsuarioProvider } from "./contexts/UsuarioContext";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
+import RegistrarAgencia from "./pages/RegistrarAgencia";
 import Cartera from "./pages/Cartera";
 import Libreta from "./pages/Libreta";
 import Reportes from "./pages/Reportes";
@@ -74,7 +75,11 @@ function App() {
               <Ruta path="/signup">
                 <RegistrarUsuario />
               </Ruta>
-              {/* test para el sidebar */}
+              {/* Registrar Agencia */}
+              <Ruta path="/signupagencia" auth>
+                <RegistrarAgencia />
+              </Ruta>
+              {/* Paginas con sidebar */}
               <Ruta exact path="/" auth>
                 <Libreta />
                 <Sidebar />
