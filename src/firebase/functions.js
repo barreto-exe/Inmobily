@@ -68,3 +68,19 @@ export const obtenerGerentes = async (agenciaId) => {
     .get();
   return promesa.docs;
 };
+
+export const obtenerOperacionesAsignadas = (asesorID, func) => {
+  // return db
+  //   .collection("tutorings")
+  //   .where("degrees", "array-contains", degree)
+  //   .onSnapshot((snapshot) => {
+  //     const tutorings = snapshot.docs.map((doc) => {
+  //       const tutoring = doc.data();
+  //       tutoring.id = doc.id;
+  //       tutoring.startTime = new Date(tutoring.startTime * 1000);
+  //       tutoring.endingTime = add(tutoring.startTime, { hours: 2 });
+  //       return tutoring;
+  //     });
+  //     func(tutorings);
+  //   });
+};
