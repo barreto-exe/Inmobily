@@ -12,9 +12,20 @@ import {
 import logo from "../assets/logo.png"
 import "./RegistrarAgencia.css"
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import { VisibilityOutlined, VisibilityOffOutlined } from "@material-ui/icons";
 
 const RegistrarAgencia = () => {
   const [foto, setFoto] = useState(null);
+
+  const [mostrarPassword, setMostrarPassword] = useState(false);
+
+  const cambiarVisibilidad = () => {
+    setMostrarPassword(!mostrarPassword);
+  };
+
+  const manejarMousePassword = (e) => {
+    e.preventDefault();
+  };
 
   const seleccionarFoto = (e) => {
     const foto = e.target.files[0];
@@ -38,9 +49,41 @@ const RegistrarAgencia = () => {
             />
             <TextField className="inputs-registroa" label="Contraseña" variant="filled" 
               required style={{marginBottom:'20px'}}
+              type={mostrarPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={cambiarVisibilidad}
+                      onMouseDown={manejarMousePassword}
+                      edge="end"
+                      style={{color: "#191e34"}}
+                    >
+                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField className="inputs-registroa" label="Confirmar Contraseña" variant="filled"
               required style={{marginBottom:'20px'}}
+              type={mostrarPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={cambiarVisibilidad}
+                      onMouseDown={manejarMousePassword}
+                      edge="end"
+                      style={{color: "#191e34"}}
+                    >
+                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
             />
           </div>
         </div>
@@ -56,7 +99,7 @@ const RegistrarAgencia = () => {
             <div className="registroa-foto-icon">
               <label htmlFor="icono-boton-archivo" className="foto-icono" >
                 <IconButton aria-label='upload picture' color="inherit" component="span" size="medium">
-                  <PhotoCamera/>
+                  <PhotoCamera style={{color: "#191e34"}}/>
                 </IconButton>
               </label>
             </div>

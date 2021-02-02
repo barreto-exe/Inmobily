@@ -276,7 +276,7 @@ const RegistrarUsuario = () => {
           <div className="div-foto-icon">
             <label htmlFor="icono-boton-archivo" className="foto-icono" >
               <IconButton aria-label='upload picture' color="inherit" component="span" size="medium">
-                <PhotoCamera/>
+                <PhotoCamera style={{color: "#191e34"}}/>
               </IconButton>
             </label>
             <div className="reg-boton">
