@@ -76,23 +76,24 @@ function App() {
                 <RegistrarUsuario />
               </Ruta>
               {/* Registrar Agencia */}
-              <Ruta path="/signupagencia" auth>
+              <Ruta path="/signupagencia">
                 <RegistrarAgencia />
               </Ruta>
+
               {/* Paginas con sidebar */}
-              <Ruta exact path="/" auth>
+              <Ruta exact path="/" auth> {/* Libreta */}
                 <Libreta />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/cartera" auth>
+              <Ruta path="/cartera" auth> {/* Cartera */}
                 <Cartera />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/reportes" auth>
+              <Ruta path="/reportes" auth> {/* Reportes */}
                 <Reportes />
                 <Sidebar />
               </Ruta>
-              <Ruta path="/ajustes" auth>
+              <Ruta path="/ajustes" auth> {/* Ajustes del perfil */}
                 <AjustesPerfil />
                 <Sidebar />
               </Ruta>
