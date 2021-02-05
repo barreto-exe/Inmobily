@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { obtenerOperacionesCerramiento } from "../firebase/functions";
+import { obtenerOperacionesCierre } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
 import Paper from '@material-ui/core/Paper';
 import './Operaciones.css';
@@ -8,7 +8,7 @@ import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
-const OperacionesCerramiento = () => {
+const OperacionesCierre = () => {
   const [operaciones, setOperaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
 
@@ -16,7 +16,7 @@ const OperacionesCerramiento = () => {
 
   useEffect(() => {
     setCargando(true); // TODO: Quitar esta carga si no genera problemas
-    const unsubscribe = obtenerOperacionesCerramiento(usuario, (operaciones) => {
+    const unsubscribe = obtenerOperacionesCierre(usuario, (operaciones) => {
       setOperaciones(operaciones);
       setCargando(false);
     });
@@ -38,4 +38,4 @@ const OperacionesCerramiento = () => {
   );
 };
 
-export default OperacionesCerramiento;
+export default OperacionesCierre;

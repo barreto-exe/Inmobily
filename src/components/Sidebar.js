@@ -87,7 +87,7 @@ const Sidebar = props => {
                     <div style={{flexGrow: 1}} />
 
                     <MenuItem>
-                        <IconButton aria-label="notificaciones" color="#000" onClick={handleClick}>
+                        <IconButton aria-label="notificaciones" onClick={handleClick}>
                             <Badge color="primary" variant="dot">
                                 <Notifications />
                             </Badge>

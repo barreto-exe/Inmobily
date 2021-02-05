@@ -116,12 +116,12 @@ export const obtenerOperacionesCaptacion = (agenciaID, func) => {
     });
 };
 
-// Consultar las operaciones de cerramiento de una agencia
+// Consultar las operaciones de Cierre de una agencia
 // Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
-export const obtenerOperacionesCerramiento = (agenciaID, func) => {
+export const obtenerOperacionesCierre = (agenciaID, func) => {
   return db
   .collection(`agencias/${agenciaID}/operaciones`)
-  .where("tipo", "==", "cerramiento")
+  .where("tipo", "==", "Cierre")
   .onSnapshot((snapshot) => {
     const operaciones = snapshot.docs.map((doc) => {
       const operacion = doc.data();

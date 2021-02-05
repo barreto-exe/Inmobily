@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import OperacionesAsignadas from "../components/OperacionesAsignadas";
 import OperacionesCaptacion from "../components/OperacionesCaptacion";
-import OperacionesCierre from "../components/OperacionesCerramiento";
+import OperacionesCierre from "../components/OperacionesCierre";
 import OperacionesUnificadas from "../components/OperacionesUnificadas";
 
 const TabPanel = (props) => {
