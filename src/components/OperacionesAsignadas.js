@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { obtenerOperacionesAsignadas } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
-import Paper from '@material-ui/core/Paper';
-import './Operaciones.css';
-import IconButton from '@material-ui/core/IconButton';
-import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
-
+import Paper from "@material-ui/core/Paper";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import "./Operaciones.css";
+import IconButton from "@material-ui/core/IconButton";
+import MoreIcon from "@material-ui/icons/MoreHorizOutlined";
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
@@ -27,14 +28,20 @@ const OperacionesAsignadas = () => {
 
   return (
     <div>
-      <Paper className="container-operaciones">
-        <p className="text-operaciones">(Operacion Asignada) #001 Cliente: Jesús González</p>
-        <div className="button-more-operaciones">
-          <IconButton>
-            <MoreIcon />
-          </IconButton>
-        </div>
-      </Paper>
+      <List>
+        {/* TODO: Cambiar a ListItem*/}
+        <Paper className="container-operaciones">
+          <p className="text-operaciones">
+            (Operacion Asignada) #001 Cliente: Jesús González
+          </p>
+          <div className="button-more-operaciones">
+            <IconButton>
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Paper>
+
+      </List>
     </div>
   );
 };
