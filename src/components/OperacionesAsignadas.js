@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { obtenerOperacionesAsignadas } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
-import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import "./Operaciones.css";
-import IconButton from "@material-ui/core/IconButton";
-import MoreIcon from "@material-ui/icons/MoreHorizOutlined";
+import ListItemText from "@material-ui/core/ListItemText"
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
@@ -29,18 +26,23 @@ const OperacionesAsignadas = () => {
   return (
     <div>
       <List>
-        {/* TODO: Cambiar a ListItem*/}
-        <Paper className="container-operaciones">
-          <p className="text-operaciones">
-            (Operacion Asignada) #001 Cliente: Jesús González
-          </p>
-          <div className="button-more-operaciones">
-            <IconButton>
-              <MoreIcon />
-            </IconButton>
-          </div>
-        </Paper>
-
+        <ListItem
+          divider
+          button
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "5pt",
+            marginBottom: "10pt",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          }}
+          >
+          <ListItemText
+            primary="Operacion Asignada"
+            secondary="#001 Cliente: Jesús González"
+            secondaryTypographyProps={{ align: "left" }}
+            style={{ whiteSpace: "pre" }}
+          />
+        </ListItem>
       </List>
     </div>
   );

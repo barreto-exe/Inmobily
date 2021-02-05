@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { obtenerOperacionesCierre } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
-import Paper from '@material-ui/core/Paper';
-import './Operaciones.css';
-import IconButton from '@material-ui/core/IconButton';
-import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText"
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
@@ -26,14 +25,25 @@ const OperacionesCierre = () => {
 
   return (
     <div>
-      <Paper className="container-operaciones">
-        <p className="text-operaciones">(Operacion de Cierre) #001 Cliente: Roman Rodriguez</p>
-        <div className="button-more-operaciones">
-          <IconButton>
-            <MoreIcon />
-          </IconButton>
-        </div>
-      </Paper>
+      <List>
+        <ListItem
+          divider
+          button
+          style={{
+            backgroundColor: "#fff",
+            borderRadius: "5pt",
+            marginBottom: "10pt",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          }}
+          >
+          <ListItemText
+            primary="Operacion de Cierre"
+            secondary="#001 Cliente: Jesús González"
+            secondaryTypographyProps={{ align: "left" }}
+            style={{ whiteSpace: "pre" }}
+          />
+        </ListItem>
+      </List>
     </div>
   );
 };
