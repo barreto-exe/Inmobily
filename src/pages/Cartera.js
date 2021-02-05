@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cartera.css";
-import StyledTable from "./StyledTable";
+import Tabla from "../components/Tabla";
 
 const Cartera = () => {
 
@@ -82,22 +82,22 @@ const Cartera = () => {
       <div className="container-menu">
         <div className="clientes-asesores-container">
           <div className="table-clientes">
-            <StyledTable columnas={columnas.clientes_asesores} data={data.clientes} titulo="Clientes" />
+            <Tabla columnas={columnas.clientes_asesores} data={data.clientes} titulo="Clientes" />
           </div>
           <div className="table-asesores">
-            <StyledTable columnas={columnas.clientes_asesores} data={data.asesores} titulo="Asesores" />
+            <Tabla columnas={columnas.clientes_asesores} data={data.asesores} titulo="Asesores" />
           </div>
         </div>
         <div className="plantillas-propiedades-container">
           <div className="table-propiedades">
-            <StyledTable columnas={columnas.propiedades} data={data.propiedades} titulo="Propiedades" />
+            <Tabla columnas={columnas.propiedades} data={data.propiedades} titulo="Propiedades" />
           </div>
           <div className="table-plantillas">
-            <StyledTable columnas={columnas.plantillas} data={data.plantillas} titulo="Plantillas" />
+            <Tabla columnas={columnas.plantillas} data={data.plantillas} titulo="Plantillas" />
           </div>
         </div>
         <div className="gerentes-table">
-          <StyledTable columnas={columnas.gerentes} data={data.gerentes} titulo="Gerentes" />
+          <Tabla columnas={columnas.gerentes} data={data.gerentes} titulo="Gerentes" />
         </div>
       </div>   
     </div>

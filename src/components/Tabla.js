@@ -5,7 +5,7 @@ import {
   Button,
 } from '@material-ui/core'
 
-const StyledTable = (props) => {
+const Tabla = (props) => {
   return(
     <div>
       <MaterialTable columns={props.columnas} data={props.data} title={props.titulo}
@@ -43,4 +43,4 @@ const StyledTable = (props) => {
   )
 }
 
-export default StyledTable;
+export default Tabla;
