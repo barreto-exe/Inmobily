@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import OperacionesAsignadas from "../components/OperacionesAsignadas";
 import OperacionesCaptacion from "../components/OperacionesCaptacion";
-import OperacionesCerramiento from "../components/OperacionesCerramiento";
+import OperacionesCierre from "../components/OperacionesCerramiento";
 import OperacionesUnificadas from "../components/OperacionesUnificadas";
 
 const TabPanel = (props) => {
@@ -25,7 +25,7 @@ const Libreta = () => {
           <Tabs centered value={value} onChange={manejarTabs}>
             <Tab label="Asignadas" />
             <Tab label="De Captación" />
-            <Tab label="De Cerramiento" />
+            <Tab label="De Cierre" />
             <Tab label="Unificadas" />
           </Tabs>
         </Paper>
@@ -36,7 +36,7 @@ const Libreta = () => {
           <OperacionesCaptacion />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <OperacionesCerramiento />
+          <OperacionesCierre />
         </TabPanel>
         <TabPanel value={value} index={3}>
           <OperacionesUnificadas />

@@ -27,7 +27,7 @@ const OperacionesCerramiento = () => {
   return (
     <div>
       <Paper className="container-operaciones">
-        <p className="text-operaciones">(Operacion Asignada) #001 Cliente: Roman Rodriguez</p>
+        <p className="text-operaciones">(Operacion de Cierre) #001 Cliente: Roman Rodriguez</p>
         <div className="button-more-operaciones">
           <IconButton>
             <MoreIcon />

@@ -27,7 +27,7 @@ const OperacionesUnificadas = () => {
   return (
     <div>
       <Paper className="container-operaciones">
-        <p className="text-operaciones">(Operacion Asignada) #001 Cliente: Kharen con h</p>
+        <p className="text-operaciones">(Operacion Unificada) #001 Cliente: Kharen con h</p>
         <div className="button-more-operaciones">
           <IconButton>
             <MoreIcon />
