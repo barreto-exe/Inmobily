@@ -23,10 +23,10 @@ const Libreta = () => {
       <div className={"container-menu"}>
         <Paper position="fixed">
           <Tabs centered value={value} onChange={manejarTabs}>
-            <Tab label="Operaciones Asignadas" />
-            <Tab label="Operaciones de Captación" />
-            <Tab label="Operaciones de Cerramiento" />
-            <Tab label="Operaciones Unificadas" />
+            <Tab label="Asignadas" />
+            <Tab label="De Captación" />
+            <Tab label="De Cerramiento" />
+            <Tab label="Unificadas" />
           </Tabs>
         </Paper>
         <TabPanel value={value} index={0}>

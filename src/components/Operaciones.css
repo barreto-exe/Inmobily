@@ -1,0 +1,25 @@
+.text-operaciones {
+    height: 40pt;
+    font-size: 15pt;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    margin-left: 20pt;
+}
+
+.container-operaciones {
+    display: flex;
+    margin-top: 10pt;
+}
+
+.button-more-operaciones {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    position: relative;
+    margin-left: auto; 
+    float: right;
+    margin-right: 20pt;
+}

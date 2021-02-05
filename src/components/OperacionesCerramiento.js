@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { obtenerOperacionesCerramiento } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
+import Paper from '@material-ui/core/Paper';
+import './Operaciones.css';
+import IconButton from '@material-ui/core/IconButton';
+import MoreIcon from '@material-ui/icons/MoreHorizOutlined';
 
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
@@ -22,7 +26,14 @@ const OperacionesCerramiento = () => {
 
   return (
     <div>
-      <h1>Operaciones de Cerramiento</h1>
+      <Paper className="container-operaciones">
+        <p className="text-operaciones">(Operacion Asignada) #001 Cliente: Roman Rodriguez</p>
+        <div className="button-more-operaciones">
+          <IconButton>
+            <MoreIcon />
+          </IconButton>
+        </div>
+      </Paper>
     </div>
   );
 };
