@@ -41,6 +41,14 @@ export const registrarUsuario = async (usuario, foto) => {
   return promesa;
 };
 
+export const actualizarUsuario = async (usuario, nuevosDatos) => {
+  const promise = db
+    .collection(`usuarios`)
+    .doc(usuario.uid)
+    .update(nuevosDatos);
+  return promise;
+};
+
 // Registro de agencia
 export const registrarAgencia = (agencia) => {
   const promesa = db.collection("agencias").add(agencia);
