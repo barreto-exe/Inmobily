@@ -1,54 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Cartera.css";
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import OperacionesAsignadas from "../components/OperacionesAsignadas";
+import OperacionesCaptacion from "../components/OperacionesCaptacion";
+import OperacionesCerramiento from "../components/OperacionesCerramiento";
+import OperacionesUnificadas from "../components/OperacionesUnificadas";
 
-function TabPanel (props){
-    const {children,value,index}=props;
-    return (<div>
-        {
-            value === index && (
-                <div>{children}</div>
-            )
-        }
-    </div>)
-}
+const TabPanel = (props) => {
+  const { children, value, index } = props;
+  return <div>{value === index && <div>{children}</div>}</div>;
+};
 
 const Libreta = () => {
+  const [value, setValue] = useState(0);
 
-    const [value,setValue]=React.useState(0) 
+  const manejarTabs = (e, val) => setValue(val);
 
-    const handleTabs=(e,val)=>(
-        setValue(val)
-    )
-
-    return (
-        <div className={"fondo"}>
-            <div className={"container-menu"}>
-            <Paper position="fixed">
-                <Tabs centered value={value} onChange={handleTabs}>
-                <Tab label="Operaciones Asignadas"  />
-                <Tab label="Operaciones de Captación"  />
-                <Tab label="Operaciones de Cerramiento"  />
-                <Tab label="Operaciones Unificadas"  />
-                </Tabs>
-            </Paper>
-            <TabPanel value={value} index={0}>
-                TO-DO: EL CONTENIDO DE LAS OPERACIONES ASIGNADAS
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                TO-DO: EL CONTENIDO DE LAS OPERACIONES DE CAPTACION
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                TO-DO: EL CONTENIDO DE LAS OPERACIONES DE CERRAMIENTO
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-                TO-DO: EL CONTENIDO DE LAS OPERACIONES UNIFICADAS
-            </TabPanel>
-            </div>    
-        </div>
-    );
+  return (
+    <div className={"fondo"}>
+      <div className={"container-menu"}>
+        <Paper position="fixed">
+          <Tabs centered value={value} onChange={manejarTabs}>
+            <Tab label="Operaciones Asignadas" />
+            <Tab label="Operaciones de Captación" />
+            <Tab label="Operaciones de Cerramiento" />
+            <Tab label="Operaciones Unificadas" />
+          </Tabs>
+        </Paper>
+        <TabPanel value={value} index={0}>
+          <OperacionesAsignadas />
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          <OperacionesCaptacion />
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          <OperacionesCerramiento />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <OperacionesUnificadas />
+        </TabPanel>
+      </div>
+    </div>
+  );
 };
 
 export default Libreta;

@@ -5,7 +5,7 @@ import { useUsuario } from "../contexts/UsuarioContext";
 // TODO: Considerar tal vez unir los tres componentes OperacionesXXXXX en uno solo, solo si es conveniente
 
 const OperacionesUnificadas = () => {
-  const [operaciones, setOperciones] = useState([]);
+  const [operaciones, setOperaciones] = useState([]);
   const [cargando, setCargando] = useState(true);
 
   const usuario = useUsuario();
