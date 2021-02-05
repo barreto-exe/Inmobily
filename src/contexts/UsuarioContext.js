@@ -18,9 +18,27 @@ const UsuarioProvider = ({ children }) => {
       if (usuario) {
         try {
           setCargando(true);
-          const usuarioDoc = await db.collection("usuarios").doc(usuario.uid).get();
-          const usuarioData = usuarioDoc.data();
-          setUsuario(usuarioData);
+          const usuarioDoc = await db
+            .collection("usuarios")
+            .doc(usuario.uid)
+            .get();
+
+          const agenciaID = usuarioDoc.data().agenciaID;
+
+          if (agenciaID) {
+            const asesorDoc = await db
+              .collecion(`agencias/${agenciaID}/usuarios`)
+              .doc(usuario.uid)
+              .get();
+            const asesorData = asesorDoc.data();
+            asesorData.uid = usuario.uid;
+            setUsuario(asesorData);
+            
+          } else {
+            const usuarioData = usuarioDoc.data();
+            usuarioData.uid = usuario.uid;
+            setUsuario(usuarioData);
+          }
         } catch (error) {
           console.log(error.message);
         }
