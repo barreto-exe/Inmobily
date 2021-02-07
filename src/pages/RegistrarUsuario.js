@@ -11,9 +11,9 @@ import {
   Link,
 } from "@material-ui/core";
 import { VisibilityOutlined, VisibilityOffOutlined } from "@material-ui/icons";
-import "./RegistroUsuario.css"
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import logo from "../assets/logo.png"
+import "./RegistroUsuario.css";
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
+import logo from "../assets/logo.png";
 
 // Página para registrar una cuenta nueva
 const RegistrarUsuario = () => {
@@ -128,11 +128,10 @@ const RegistrarUsuario = () => {
 
   return (
     <div>
-      <div style={{width:'913px', margin:'30px auto auto auto'}}>
+      <div style={{ width: "913px", margin: "30px auto auto auto" }}>
         <img src={logo} width="300px" height="auto" />
       </div>
-      <div className="cRegistro"> 
-        
+      <div className="cRegistro">
         <div>
           <h1 className="titleRegistro">Registrar Usuario</h1>
           <div className="containerFlexing">
@@ -142,7 +141,7 @@ const RegistrarUsuario = () => {
               label="Nombre"
               variant="filled"
               required
-              style={{marginRight: "20px"}}
+              style={{ marginRight: "20px" }}
               error={mensajesError.nombre !== ""}
               helperText={mensajesError.nombre}
               onChange={(e) => cambiarTexto("nombre", e.target.value)}
@@ -158,7 +157,7 @@ const RegistrarUsuario = () => {
               onChange={(e) => cambiarTexto("apellido", e.target.value)}
             ></TextField>
           </div>
-          
+
           <TextField
             fullWidth
             className="textFields"
@@ -166,7 +165,7 @@ const RegistrarUsuario = () => {
             type="email"
             variant="filled"
             required
-            style={{marginBottom: "20px"}}
+            style={{ marginBottom: "20px" }}
             error={mensajesError.correo !== ""}
             helperText={mensajesError.correo}
             onChange={(e) => cambiarTexto("correo", e.target.value)}
@@ -179,7 +178,7 @@ const RegistrarUsuario = () => {
               label="Cédula"
               variant="filled"
               required
-              style={{marginRight: "20px"}}
+              style={{ marginRight: "20px" }}
               error={mensajesError.cedula !== ""}
               helperText={mensajesError.cedula}
               onChange={(e) => cambiarTexto("cedula", e.target.value)}
@@ -201,7 +200,7 @@ const RegistrarUsuario = () => {
             className="textFields"
             variant="filled"
             required
-            style={{marginBottom: "20px"}}
+            style={{ marginBottom: "20px" }}
             error={mensajesError.direccion !== ""}
             helperText={mensajesError.direccion}
             onChange={(e) => cambiarTexto("direccion", e.target.value)}
@@ -210,7 +209,7 @@ const RegistrarUsuario = () => {
             <TextField
               fullWidth
               className="textFields"
-              style={{marginRight:"20px"}}
+              style={{ marginRight: "20px" }}
               label="Contraseña"
               type={mostrarPassword ? "text" : "password"}
               variant="filled"
@@ -226,9 +225,13 @@ const RegistrarUsuario = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
-                      style={{color: "#191e34"}}
+                      style={{ color: "#191e34" }}
                     >
-                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
+                      {mostrarPassword ? (
+                        <VisibilityOutlined />
+                      ) : (
+                        <VisibilityOffOutlined />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -252,55 +255,60 @@ const RegistrarUsuario = () => {
                       onClick={cambiarVisibilidad}
                       onMouseDown={manejarMousePassword}
                       edge="end"
-                      style={{color: "#191e34"}}
+                      style={{ color: "#191e34" }}
                     >
-                      {mostrarPassword ? <VisibilityOutlined /> : <VisibilityOffOutlined />}
+                      {mostrarPassword ? (
+                        <VisibilityOutlined />
+                      ) : (
+                        <VisibilityOffOutlined />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             ></TextField>
           </div>
-          
-          
-          
         </div>
         <div className="container-avatar-icon">
-          <div className="rightAvatar">            
-            <Avatar style={{fontSize: '40px' ,height: '220px', width: '220px'}} alt="Foto de perfil" src={foto && URL.createObjectURL(foto)}/>
-            <input accept="image/*" style={{display: 'none'}} id="icono-boton-archivo"  type="file" 
-            onChange={seleccionarFoto}/>
-            
+          <div className="rightAvatar">
+            <Avatar
+              style={{ fontSize: "40px", height: "220px", width: "220px" }}
+              alt="Foto de perfil"
+              src={foto && URL.createObjectURL(foto)}
+            />
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="icono-boton-archivo"
+              type="file"
+              onChange={seleccionarFoto}
+            />
           </div>
           <div className="div-foto-icon">
-            <label htmlFor="icono-boton-archivo" className="foto-icono" >
-              <IconButton aria-label='upload picture' color="inherit" component="span" size="medium">
-                <PhotoCamera style={{color: "#191e34"}}/>
+            <label htmlFor="icono-boton-archivo" className="foto-icono">
+              <IconButton
+                aria-label="upload picture"
+                color="inherit"
+                component="span"
+                size="medium"
+              >
+                <PhotoCamera style={{ color: "#191e34" }} />
               </IconButton>
             </label>
             <div className="reg-boton">
               <Button
                 variant="contained"
                 fullWidth
-                style={{right:'130px', top: '40px'}}
+                style={{ right: "130px", top: "40px" }}
                 color="primary"
-                onClick={registrarCuenta}>
+                onClick={registrarCuenta}
+              >
                 Registrarse
               </Button>
             </div>
           </div>
         </div>
       </div>
-      {/* <div className="reg-boton">
-        <Button
-          variant="contained"
-          fullWidth
-          color="primary"
-          onClick={registrarCuenta}>
-          Registrarse
-        </Button>
-      </div> */}
-      
     </div>
   );
 };

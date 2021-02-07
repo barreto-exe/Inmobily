@@ -45,7 +45,7 @@ export const registrarUsuario = async (usuario, foto) => {
 
 export const actualizarUsuario = async (usuario, nuevosDatos) => {
   const promise = db
-    .collection(`usuarios`)
+    .collection(`usuarios`) // TODO: Cambiar después a la ruta real
     .doc(usuario.uid)
     .update(nuevosDatos);
   return promise;

@@ -94,12 +94,12 @@ const IniciarSesion = () => {
             <TextField
               fullWidth
               className="textFields"
-              label="Nombre"
+              label="Correo"
               variant="filled"
               style={{marginTop: "5%"}}
               error={mensajesError.correo !== ""}
               helperText={mensajesError.correo}
-              onChange={(e) => cambiarTexto("Email", e.target.value)}
+              onChange={(e) => cambiarTexto("correo", e.target.value)}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">

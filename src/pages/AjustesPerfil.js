@@ -47,10 +47,10 @@ const AjustesPerfil = () => {
 
     try {
       await actualizarUsuario(usuario, nuevosDatos);
-      alert("A");
-      setErrorMessage(false);
+      window.location.reload();
     } catch (error) {
       console.log(error);
+      // TODO: Colocar un mensaje de error por desconexión
     }
   };
 
@@ -70,9 +70,10 @@ const AjustesPerfil = () => {
     try {
       alert("A");
 
-      setErrorPass("");
+      window.location.reload();
     } catch (error) {
       console.log(error);
+      // TODO: Colocar error de desconexión
     }
   }
 
@@ -90,7 +91,7 @@ const AjustesPerfil = () => {
         </div>
         <div className={"inputs-ajustes-container"}>
           {/* TODO: Colocar correctamente el mensaje de error */}
-          {errorMessage && <p>Debes llenar todos los campos</p>}
+          {errorMessage !== "" && <p>Debes llenar todos los campos</p>}
           <div className={"input-flex"}>
             <TextField
               className={"inputs-ajustes"}
