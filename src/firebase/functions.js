@@ -53,7 +53,7 @@ export const actualizarUsuario = async (usuario, nuevosDatos) => {
 
 export const obtenerAgencias = async () => {
   const agencias = await db.collection("agencias").get();
-  return agencias.docs;
+  return agencias.docs.map((agencia) => agencia.data());
 }
 
 // Registro de agencia
