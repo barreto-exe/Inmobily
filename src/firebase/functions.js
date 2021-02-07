@@ -51,10 +51,28 @@ export const actualizarUsuario = async (usuario, nuevosDatos) => {
   return promise;
 };
 
+export const obtenerAgencias = async () => {
+  const agencias = await db.collection("agencias").get();
+  return agencias.docs;
+}
+
 // Registro de agencia
-export const registrarAgencia = (agencia) => {
-  const promesa = db.collection("agencias").add(agencia);
-  return promesa;
+export const registrarAgencia = async (agencia, foto) => {
+
+  const agencias = await obtenerAgencias();
+
+  if (agencias.some((a) => a.rif === agencia.rif)) {
+    throw "agencia-repetida";
+  }
+
+  let url = "";
+  if (foto) {
+    url = await subirArchivo(foto, `imagenes/${agencia.rif}.png`);
+  }
+
+  agencia.fotoURL = url;
+
+  await db.collection("agencias").add(agencia);
 };
 
 // Consultar asesores de una agencia

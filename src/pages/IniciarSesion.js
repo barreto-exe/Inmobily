@@ -165,6 +165,8 @@ const IniciarSesion = () => {
               Registrarse
             </Button>
             <Button
+              component={Link}
+              to="/signup/agencia"
               style={{ marginLeft: "5pt", marginRight: "5pt" }}
               variant="contained"
               color="primary"
