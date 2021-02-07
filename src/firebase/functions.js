@@ -72,7 +72,7 @@ export const registrarAgencia = async (agencia, foto) => {
 
   agencia.fotoURL = url;
 
-  await db.collection("agencias").add(agencia);
+  await db.collection("agencias").doc(agencia.rif).set(agencia);
 };
 
 // Consultar asesores de una agencia

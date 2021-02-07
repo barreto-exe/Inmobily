@@ -28,6 +28,7 @@ const RegistrarUsuario = () => {
     direccion: "",
     password: "",
     confirmacion: "",
+    rif: "",
   };
 
   // Estados
@@ -93,6 +94,9 @@ const RegistrarUsuario = () => {
     if (usuario.confirmacion === "") {
       mensajesError.confirmacion = "Repite tu contraseña, por favor";
     }
+    if (usuario.rif === "") {
+      mensajesError.rif = "Ingresa el RIF de tu agencia, por favor";
+    }
 
     // Verifica que todo input requerido esté lleno
     for (const propiedad in usuario) {
@@ -115,7 +119,9 @@ const RegistrarUsuario = () => {
       await registrarUsuario(usuario, foto);
       history.push("/");
     } catch (error) {
-      if (error.code === "auth/invalid-email") {
+      if (error === "rif-invalido") {
+        mensajesError.rif = "No hay agencias registradas con este RIF";
+      } else if (error.code === "auth/invalid-email") {
         mensajesError.correo =
           "Ingresa una dirección de correo electrónico válida";
       } else if (error.code === "auth/email-already-in-use") {
@@ -270,6 +276,18 @@ const RegistrarUsuario = () => {
                   </InputAdornment>
                 ),
               }}
+            ></TextField>
+            {/* TODO: OJO colocar en un lugar correcto este input */}
+            <TextField
+              fullWidth
+              className="textFields"
+              label="RIF de Agencia"
+              variant="filled"
+              required
+              style={{ marginRight: "20px" }}
+              error={mensajesError.rif !== ""}
+              helperText={mensajesError.rif}
+              onChange={(e) => cambiarTexto("rif", e.target.value)}
             ></TextField>
           </div>
         </div>
