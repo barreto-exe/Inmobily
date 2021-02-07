@@ -6,20 +6,20 @@ import {
 import { useUsuario } from "../contexts/UsuarioContext";
 
 // Envoltorio del Route para proteger rutas con autenticación
-const Ruta = ({ children, auth, ...rest }) => {
+const RutaProtegida = ({ children, ...rest }) => {
   const usuario = useUsuario();
 
   return (
     <Route
       {...rest}
       render={({ location }) =>
-        (auth ? usuario : !usuario) ? (
+        usuario ? (
           children
         ) : (
           <Redirect
             exact 
             to={{
-              pathname: auth ? "/login" : "/",
+              pathname: "/login",
               state: { from: location },
             }}
           />
@@ -29,4 +29,4 @@ const Ruta = ({ children, auth, ...rest }) => {
   );
 };
 
-export default Ruta;
+export default RutaProtegida;

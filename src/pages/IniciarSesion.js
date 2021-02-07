@@ -18,7 +18,7 @@ import "./IniciarSesion.css";
 import MailIcon from "@material-ui/icons/MailOutlined";
 import LockIcon from "@material-ui/icons/LockOutlined";
 import FondoLogo from "../assets/fondologo.jpg";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 // Pantalla de inicio de sesión
@@ -34,6 +34,8 @@ const IniciarSesion = () => {
 
   const [mensajesError, setMensajesError] = useState(datosIniciales);
   const [mostrarPassword, setMostrarPassword] = useState(false);
+
+  const history = useHistory();
 
   // Función llamada al cambiar el texto del input
   const cambiarTexto = (propiedad, valor) => {
@@ -70,6 +72,7 @@ const IniciarSesion = () => {
     // Inicia sesión
     try {
       await iniciarSesion(usuario.correo.trim(), usuario.password);
+      history.push("/");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         mensajesError.correo =
@@ -95,6 +98,7 @@ const IniciarSesion = () => {
               fullWidth
               className="textFields"
               label="Correo"
+              type="email"
               variant="filled"
               style={{marginTop: "5%"}}
               error={mensajesError.correo !== ""}

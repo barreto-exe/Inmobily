@@ -39,8 +39,8 @@ export const registrarUsuario = async (usuario, foto) => {
   delete datos.password;
   delete datos.confirmacion;
 
-  const promesa = db.collection("usuarios").doc(uid).set(datos);
-  return promesa;
+  await db.collection("usuarios").doc(uid).set(datos);
+
 };
 
 export const actualizarUsuario = async (usuario, nuevosDatos) => {
@@ -120,30 +120,30 @@ export const obtenerOperacionesCaptacion = (agenciaID, func) => {
 // Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
 export const obtenerOperacionesCierre = (agenciaID, func) => {
   return db
-  .collection(`agencias/${agenciaID}/operaciones`)
-  .where("tipo", "==", "Cierre")
-  .onSnapshot((snapshot) => {
-    const operaciones = snapshot.docs.map((doc) => {
-      const operacion = doc.data();
-      operacion.id = doc.id;
-      return operacion;
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .where("tipo", "==", "Cierre")
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
     });
-    func(operaciones);
-  });
 };
 
 // Consultar las operaciones unificadas de una agencia
 // Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
 export const obtenerOperacionesUnificadas = (agenciaID, func) => {
   return db
-  .collection(`agencias/${agenciaID}/operaciones`)
-  .where("tipo", "==", "unificada")
-  .onSnapshot((snapshot) => {
-    const operaciones = snapshot.docs.map((doc) => {
-      const operacion = doc.data();
-      operacion.id = doc.id;
-      return operacion;
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .where("tipo", "==", "unificada")
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
     });
-    func(operaciones);
-  });
 };

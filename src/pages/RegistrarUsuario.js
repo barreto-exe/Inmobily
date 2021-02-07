@@ -14,6 +14,7 @@ import { VisibilityOutlined, VisibilityOffOutlined } from "@material-ui/icons";
 import "./RegistroUsuario.css";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import logo from "../assets/logo.png";
+import { useHistory } from "react-router-dom";
 
 // Página para registrar una cuenta nueva
 const RegistrarUsuario = () => {
@@ -34,6 +35,8 @@ const RegistrarUsuario = () => {
   const [foto, setFoto] = useState(null);
   const [mensajesError, setMensajesError] = useState(datosIniciales);
   const [mostrarPassword, setMostrarPassword] = useState(false);
+
+  const history = useHistory();
 
   // Función llamada al cambiar el texto del input
   const cambiarTexto = (propiedad, valor) => {
@@ -110,6 +113,7 @@ const RegistrarUsuario = () => {
     // Intenta registrar al usuario
     try {
       await registrarUsuario(usuario, foto);
+      history.push("/");
     } catch (error) {
       if (error.code === "auth/invalid-email") {
         mensajesError.correo =

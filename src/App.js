@@ -1,6 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
-import Ruta from "./components/Ruta";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import RutaProtegida from "./components/RutaProtegida";
 import { UsuarioProvider } from "./contexts/UsuarioContext";
 import IniciarSesion from "./pages/IniciarSesion";
 import RegistrarUsuario from "./pages/RegistrarUsuario";
@@ -65,45 +65,44 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <UsuarioProvider>
-          <Router>
-            <Switch>
-              <Ruta path="/login">
-                <IniciarSesion />
-              </Ruta>
-              {/* Registrar cuenta */}
-              <Ruta path="/signup">
-                <RegistrarUsuario />
-              </Ruta>
-              {/* Registrar Agencia */}
-              <Ruta path="/signupagencia">
-                <RegistrarAgencia />
-              </Ruta>
-
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <IniciarSesion />
+            </Route>
+            {/* Registrar cuenta */}
+            <Route exact path="/signup">
+              <RegistrarUsuario />
+            </Route>
+            {/* Registrar Agencia */}
+            <Route path="/signup/agencia">
+              <RegistrarAgencia />
+            </Route>
+            <UsuarioProvider>
               {/* Paginas con sidebar */}
               {/* Libreta */}
-              <Ruta exact path="/" auth> 
+              <RutaProtegida exact path="/">
                 <Libreta />
                 <Sidebar />
-              </Ruta>
+              </RutaProtegida>
               {/* Cartera */}
-              <Ruta path="/cartera" auth> 
+              <RutaProtegida path="/cartera">
                 <Cartera />
                 <Sidebar />
-              </Ruta>
+              </RutaProtegida>
               {/* Reportes */}
-              <Ruta path="/reportes" auth> 
+              <RutaProtegida path="/reportes">
                 <Reportes />
                 <Sidebar />
-              </Ruta>
+              </RutaProtegida>
               {/* Ajustes del perfil */}
-              <Ruta path="/ajustes" auth> 
+              <RutaProtegida path="/ajustes">
                 <AjustesPerfil />
                 <Sidebar />
-              </Ruta>
-            </Switch>
-          </Router>
-        </UsuarioProvider>
+              </RutaProtegida>
+            </UsuarioProvider>
+          </Switch>
+        </Router>
       </ThemeProvider>
     </div>
   );
