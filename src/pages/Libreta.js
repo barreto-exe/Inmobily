@@ -7,6 +7,7 @@ import OperacionesAsignadas from "../components/OperacionesAsignadas";
 import OperacionesCaptacion from "../components/OperacionesCaptacion";
 import OperacionesCierre from "../components/OperacionesCierre";
 import OperacionesUnificadas from "../components/OperacionesUnificadas";
+import Button from '@material-ui/core/Button';
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -15,6 +16,15 @@ const TabPanel = (props) => {
 
 const Libreta = () => {
   const [value, setValue] = useState(0);
+
+
+  //aca se añadiran las operaciones, debemos definir en que parte se crearan
+  const aperturarOp = ()=>{
+    if (value==0) console.log('Asignada');
+    if (value==1) console.log('Captación');
+    if (value==2) console.log('Cierre');
+    if (value==3) console.log('Unificada');
+  }
 
   const manejarTabs = (e, val) => setValue(val);
 
@@ -29,6 +39,9 @@ const Libreta = () => {
             <Tab label="Unificadas" />
           </Tabs>
         </Paper>
+        <Button variant="contained" onClick={()=>{aperturarOp()}} color="primary" style={{marginTop:'10pt',marginBottom:'5pt',marginLeft:'5pt'}}>
+            Aperturar Operación
+        </Button>
         <TabPanel value={value} index={0}>
           <OperacionesAsignadas />
         </TabPanel>
