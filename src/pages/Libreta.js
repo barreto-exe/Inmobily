@@ -17,15 +17,6 @@ const TabPanel = (props) => {
 const Libreta = () => {
   const [value, setValue] = useState(0);
 
-
-  //aca se añadiran las operaciones, debemos definir en que parte se crearan
-  const aperturarOp = ()=>{
-    if (value==0) console.log('Asignada');
-    if (value==1) console.log('Captación');
-    if (value==2) console.log('Cierre');
-    if (value==3) console.log('Unificada');
-  }
-
   const manejarTabs = (e, val) => setValue(val);
 
   return (
@@ -39,17 +30,20 @@ const Libreta = () => {
             <Tab label="Unificadas" />
           </Tabs>
         </Paper>
-        <Button variant="contained" onClick={()=>{aperturarOp()}} color="primary" style={{marginTop:'10pt',marginBottom:'5pt',marginLeft:'5pt'}}>
-            Aperturar Operación
-        </Button>
         <TabPanel value={value} index={0}>
           <OperacionesAsignadas />
         </TabPanel>
         <TabPanel value={value} index={1}>
+          <Button variant="contained" color="primary" style={{marginTop:'10pt',marginBottom:'5pt',marginLeft:'5pt'}}>
+            Aperturar Operación
+          </Button>
           <OperacionesCaptacion />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <OperacionesCierre />
+          <Button variant="contained" color="primary" style={{marginTop:'10pt',marginBottom:'5pt',marginLeft:'5pt'}}>
+            Aperturar Operación
+          </Button>
+          <OperacionesCierre /> 
         </TabPanel>
         <TabPanel value={value} index={3}>
           <OperacionesUnificadas />
