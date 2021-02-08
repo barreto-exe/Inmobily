@@ -21,8 +21,11 @@
 .info{
     position: absolute;
     text-align: left;
-    left: 490px;
-    top: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    left: 370px;
+    top: -20px;
 }
 
 .inputs-ajustes{
@@ -44,4 +47,22 @@
     position: absolute;
     left: 450px;
     top: 261px;
+}
+
+.informacion-ajustes{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.foto-ajustes{
+  margin-right: 20px;
+}
+
+.foto-icono-container-ajustes{
+  background-color: #dfe6e9;
+  border-radius: 50%;
+  position: absolute;
+  top: 98px;
+  left: 90px;
 }

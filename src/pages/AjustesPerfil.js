@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./AjustesPerfil.css";
-import { Typography, TextField, Button, Divider } from "@material-ui/core";
+import { Typography, TextField, Button, Divider, Avatar, IconButton } from "@material-ui/core";
 import { useUsuario } from "../contexts/UsuarioContext";
-import { actualizarUsuario } from "../firebase/functions";
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import { actualizarUsuario, subirArchivo } from "../firebase/functions";
 
 const AjustesPerfil = () => {
   const usuario = useUsuario();
@@ -12,6 +13,7 @@ const AjustesPerfil = () => {
     apellido: usuario.apellido,
     telefono: usuario.telefono,
     direccion: usuario.direccion,
+    fotoURL: usuario.fotoURL,
   });
 
   const [nuevaPassword, setNuevaPassword] = useState({
@@ -22,6 +24,21 @@ const AjustesPerfil = () => {
 
   const [errorMessage, setErrorMessage] = useState(false);
   const [errorPass, setErrorPass] = useState("");
+  const [foto, setFoto] = useState(null);
+
+  const seleccionarFoto = async(e) => {
+    if (e.target.files[0]){
+      const foto = e.target.files[0];
+      setFoto(foto);
+      const url = await subirArchivo(foto, `imagenes/${usuario.uid}.png`);
+      actualizarUsuario(usuario, {...nuevosDatos, fotoURL: url})
+      .then(() => setNuevosDatos({...nuevosDatos, fotoURL: url}))
+      .catch((err) => {
+        alert("Error al intentar subir la imagen");
+        console.log("error: " + err)
+      })
+    }
+  };
 
   // Función llamada al cambiar el texto del input de usuario
   const cambiarTextoUsuario = (propiedad, valor) => {
@@ -81,12 +98,26 @@ const AjustesPerfil = () => {
       <div className={"container-menu"}>
         {/*TODO: poner componente para cambiar foto de perfil */}
         <div className={"info"}>
-          <Typography variant="h5">
-            {usuario.nombre + " " + usuario.apellido}
-          </Typography>
-          <Typography variant="body1">{usuario.direccion}</Typography>
-          <Typography variant="body1">Cargo</Typography>
-          {/* TODO: Colocar el cargo cuando el campo exista */}
+          <div className="foto-ajustes">
+            <Avatar style={{fontSize: '40px' ,height: '130px', width: '130px'}} alt="Foto de perfil" src={nuevosDatos.fotoURL}/>
+            <input accept="image/*" style={{display: 'none'}} id="icono-boton-ajustes"  type="file"
+            onChange={seleccionarFoto}/>
+            <div className="foto-icono-container-ajustes">
+              <label htmlFor="icono-boton-ajustes" className="foto-icono-ajustes" >
+                <IconButton aria-label='upload picture' color="inherit" component="span" size="small">
+                  <PhotoCamera style={{color: "#191e34", width: '20px', height: '20px', padding: '5'}}/>
+                </IconButton>
+              </label>
+            </div>
+          </div>
+          <div className="informacion-ajustes">
+            <Typography variant="h5">
+              {usuario.nombre + " " + usuario.apellido}
+            </Typography>
+            <Typography variant="body1">{usuario.direccion}</Typography>
+            <Typography variant="body1">Cargo</Typography>
+            {/* TODO: Colocar el cargo cuando el campo exista */}
+          </div>
         </div>
         <div className={"inputs-ajustes-container"}>
           {/* TODO: Colocar correctamente el mensaje de error */}
