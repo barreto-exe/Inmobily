@@ -1,0 +1,26 @@
+.fondo {
+  background-color:white;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;   
+}
+
+.table-clientes, .table-asesores{
+  width: 500px;
+}
+
+.clientes-asesores-container, .plantillas-propiedades-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.table-propiedades{
+  width: 600px;
+}
+
+.table-plantillas{
+  width: 400px;
+}

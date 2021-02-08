@@ -1,0 +1,68 @@
+.fondo{
+    background-color:white;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;   
+    overflow:auto;
+}
+
+.container-menu{
+    position: relative;
+    top: 90px;
+    width: 1080px;
+    height: 700px;
+    align-self: center;
+    margin: 10px auto;
+    left: 120px;
+}
+
+.info{
+    position: absolute;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    left: 370px;
+    top: -20px;
+}
+
+.inputs-ajustes{
+    width: 420px;
+}
+
+.inputs-ajustes-container{
+    position:absolute;
+    top: 150px;
+    left: 70px; 
+}
+
+.input-flex{
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.inputs-password{
+    position: absolute;
+    left: 450px;
+    top: 261px;
+}
+
+.informacion-ajustes{
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+}
+
+.foto-ajustes{
+  margin-right: 20px;
+}
+
+.foto-icono-container-ajustes{
+  background-color: #dfe6e9;
+  border-radius: 50%;
+  position: absolute;
+  top: 98px;
+  left: 90px;
+}

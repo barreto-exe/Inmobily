@@ -1,0 +1,10 @@
+.pie-propiedades{
+    align-items: flex-end;
+    align-content: space-between;
+    align-self: start;
+    text-align: center;
+    float: right;
+    width: 300px;
+    border: 3px solid #73AD21;
+    padding: 10px;
+  }
