@@ -23,6 +23,13 @@ export const subirArchivo = async (archivo, ruta) => {
 
 // Registro de usuarios
 export const registrarUsuario = async (usuario, foto) => {
+  // Verifica que exista la agencia
+  const agencia = await db.collection("agencias").doc(usuario.rif).get();
+  
+  if (!agencia.exists) {
+    throw "rif-invalido";
+  }
+
   const respuesta = await auth.createUserWithEmailAndPassword(
     usuario.correo,
     usuario.password
@@ -35,12 +42,31 @@ export const registrarUsuario = async (usuario, foto) => {
     url = await subirArchivo(foto, `imagenes/${uid}.png`);
   }
   // Copia los datos del usuario
-  const datos = { ...usuario, fotoURL: url };
+  const datos = { ...usuario, uid, fotoURL: url, agenciaID: usuario.rif };
+  delete datos.rif;
   delete datos.password;
   delete datos.confirmacion;
 
-  await db.collection("usuarios").doc(uid).set(datos);
+  const usuarios = await db
+    .collection("agencias")
+    .doc(usuario.rif)
+    .collection("usuarios")
+    .get();
 
+  // Si es el superusuaro
+  if (!usuarios.docs.length) {
+    datos.tipo = "superusuario";
+  }
+  else {
+    datos.tipo = "asesor";
+  }
+
+  await db
+    .collection("agencias")
+    .doc(usuario.rif)
+    .collection("usuarios")
+    .doc(uid)
+    .set(datos);
 };
 
 export const actualizarUsuario = async (usuario, nuevosDatos) => {
@@ -54,11 +80,10 @@ export const actualizarUsuario = async (usuario, nuevosDatos) => {
 export const obtenerAgencias = async () => {
   const agencias = await db.collection("agencias").get();
   return agencias.docs.map((agencia) => agencia.data());
-}
+};
 
 // Registro de agencia
 export const registrarAgencia = async (agencia, foto) => {
-
   const agencias = await obtenerAgencias();
 
   if (agencias.some((a) => a.rif === agencia.rif)) {

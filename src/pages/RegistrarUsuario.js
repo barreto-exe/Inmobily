@@ -131,6 +131,9 @@ const RegistrarUsuario = () => {
         mensajesError.password =
           "Ingresa una contraseña de al menos 6 caracteres, por favor";
       }
+      else {
+        console.log(error);
+      }
       // TODO: Pensar en cómo manejar el error de desconexión
       setMensajesError(mensajesError);
     }
