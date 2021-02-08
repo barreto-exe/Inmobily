@@ -23,6 +23,13 @@ export const subirArchivo = async (archivo, ruta) => {
 
 // Registro de usuarios
 export const registrarUsuario = async (usuario, foto) => {
+  // Verifica que exista la agencia
+  const agencia = await db.collection("agencias").doc(usuario.rif).get();
+  
+  if (!agencia.exists) {
+    throw "rif-invalido";
+  }
+
   const respuesta = await auth.createUserWithEmailAndPassword(
     usuario.correo,
     usuario.password
@@ -35,26 +42,62 @@ export const registrarUsuario = async (usuario, foto) => {
     url = await subirArchivo(foto, `imagenes/${uid}.png`);
   }
   // Copia los datos del usuario
-  const datos = { ...usuario, fotoURL: url };
+  const datos = { ...usuario, uid, fotoURL: url, agenciaID: usuario.rif };
+  delete datos.rif;
   delete datos.password;
   delete datos.confirmacion;
 
-  const promesa = db.collection("usuarios").doc(uid).set(datos);
-  return promesa;
+  const usuarios = await db
+    .collection("agencias")
+    .doc(usuario.rif)
+    .collection("usuarios")
+    .get();
+
+  // Si es el superusuaro
+  if (!usuarios.docs.length) {
+    datos.tipo = "superusuario";
+  }
+  else {
+    datos.tipo = "asesor";
+  }
+
+  await db
+    .collection("agencias")
+    .doc(usuario.rif)
+    .collection("usuarios")
+    .doc(uid)
+    .set(datos);
 };
 
 export const actualizarUsuario = async (usuario, nuevosDatos) => {
   const promise = db
-    .collection(`usuarios`)
+    .collection(`usuarios`) // TODO: Cambiar después a la ruta real
     .doc(usuario.uid)
     .update(nuevosDatos);
   return promise;
 };
 
+export const obtenerAgencias = async () => {
+  const agencias = await db.collection("agencias").get();
+  return agencias.docs.map((agencia) => agencia.data());
+};
+
 // Registro de agencia
-export const registrarAgencia = (agencia) => {
-  const promesa = db.collection("agencias").add(agencia);
-  return promesa;
+export const registrarAgencia = async (agencia, foto) => {
+  const agencias = await obtenerAgencias();
+
+  if (agencias.some((a) => a.rif === agencia.rif)) {
+    throw "agencia-repetida";
+  }
+
+  let url = "";
+  if (foto) {
+    url = await subirArchivo(foto, `imagenes/${agencia.rif}.png`);
+  }
+
+  agencia.fotoURL = url;
+
+  await db.collection("agencias").doc(agencia.rif).set(agencia);
 };
 
 // Consultar asesores de una agencia
@@ -120,30 +163,30 @@ export const obtenerOperacionesCaptacion = (agenciaID, func) => {
 // Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
 export const obtenerOperacionesCierre = (agenciaID, func) => {
   return db
-  .collection(`agencias/${agenciaID}/operaciones`)
-  .where("tipo", "==", "Cierre")
-  .onSnapshot((snapshot) => {
-    const operaciones = snapshot.docs.map((doc) => {
-      const operacion = doc.data();
-      operacion.id = doc.id;
-      return operacion;
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .where("tipo", "==", "Cierre")
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
     });
-    func(operaciones);
-  });
 };
 
 // Consultar las operaciones unificadas de una agencia
 // Recibe el id de la agencia y la función que se ejecutará luego de obtener las operaciones
 export const obtenerOperacionesUnificadas = (agenciaID, func) => {
   return db
-  .collection(`agencias/${agenciaID}/operaciones`)
-  .where("tipo", "==", "unificada")
-  .onSnapshot((snapshot) => {
-    const operaciones = snapshot.docs.map((doc) => {
-      const operacion = doc.data();
-      operacion.id = doc.id;
-      return operacion;
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .where("tipo", "==", "unificada")
+    .onSnapshot((snapshot) => {
+      const operaciones = snapshot.docs.map((doc) => {
+        const operacion = doc.data();
+        operacion.id = doc.id;
+        return operacion;
+      });
+      func(operaciones);
     });
-    func(operaciones);
-  });
 };
