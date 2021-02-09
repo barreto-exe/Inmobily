@@ -15,7 +15,6 @@ export const cerrarSesion = () => {
 export const subirArchivo = async (archivo, ruta) => {
   const archivoRef = storage.ref().child(ruta);
 
-  // TODO: Tener cuidado con los posibles errores y colocar metadata
   await archivoRef.put(archivo);
   const url = await archivoRef.getDownloadURL();
   return url;
@@ -25,7 +24,7 @@ export const subirArchivo = async (archivo, ruta) => {
 export const registrarUsuario = async (usuario, foto) => {
   // Verifica que exista la agencia
   const agencia = await db.collection("agencias").doc(usuario.rif).get();
-  
+
   if (!agencia.exists) {
     throw "rif-invalido";
   }
@@ -56,8 +55,7 @@ export const registrarUsuario = async (usuario, foto) => {
   // Si es el superusuaro
   if (!usuarios.docs.length) {
     datos.tipo = "superusuario";
-  }
-  else {
+  } else {
     datos.tipo = "asesor";
   }
 
@@ -69,9 +67,17 @@ export const registrarUsuario = async (usuario, foto) => {
     .set(datos);
 };
 
-export const actualizarUsuario = async (usuario, nuevosDatos) => {
+export const actualizarUsuario = async (usuario, nuevosDatos, foto) => {
+
+  if (foto) {
+    const url = await subirArchivo(foto, `imagenes/${usuario.uid}.png`);
+    nuevosDatos.fotoURL = url;
+  }
+
   const promise = db
-    .collection(`usuarios`) // TODO: Cambiar después a la ruta real
+    .collection("agencias")
+    .doc(usuario.agenciaID)
+    .collection("usuarios")
     .doc(usuario.uid)
     .update(nuevosDatos);
   return promise;
@@ -164,7 +170,7 @@ export const obtenerOperacionesCaptacion = (agenciaID, func) => {
 export const obtenerOperacionesCierre = (agenciaID, func) => {
   return db
     .collection(`agencias/${agenciaID}/operaciones`)
-    .where("tipo", "==", "Cierre")
+    .where("tipo", "==", "cierre")
     .onSnapshot((snapshot) => {
       const operaciones = snapshot.docs.map((doc) => {
         const operacion = doc.data();
