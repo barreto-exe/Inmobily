@@ -146,6 +146,7 @@ export const obtenerClientes = (agenciaID, func) => {
     .onSnapshot((snapshot) => {
       const clientes = snapshot.docs.map((doc) => {
         const cliente = doc.data();
+        cliente.id = doc.id;
         return cliente;
       });
       func(clientes);

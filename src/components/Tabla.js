@@ -14,16 +14,12 @@ const Tabla = (props) => {
           {
             icon: "edit",
             tooltip: "Editar",
-            onClick: (event, rowData) =>
-              console.log(
-                "Ha accedido al editar cliente de: " + rowData.nombre
-              ),
+            onClick: (event, rowData) => props.editarClick(rowData),
           },
           {
             icon: InfoIcon,
             tooltip: "Informacion",
-            onClick: (event, rowData) =>
-              console.log("Informacion sobre: " + rowData.nombre),
+            onClick: (event, rowData) => props.infoClick(rowData),
           },
         ]}
         options={{

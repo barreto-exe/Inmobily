@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Cartera.css";
 import Tabla from "../components/Tabla";
-import { obtenerAsesores, obtenerGerentes, obtenerClientes } from "../firebase/functions";
+import {
+  obtenerAsesores,
+  obtenerGerentes,
+  obtenerClientes,
+} from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
+import { useHistory } from "react-router-dom";
 
 const Cartera = () => {
   //Estas columnas son fijas, el campo field es el nombre con el que se accedera a dicho dato
@@ -94,6 +99,7 @@ const Cartera = () => {
   const [loadingCliente, setLoadingCliente] = useState(true);
 
   const usuario = useUsuario();
+  const history = useHistory();
 
   useEffect(() => {
     const unsubAsesores = obtenerAsesores(usuario.agenciaID, (asesores) => {
@@ -131,6 +137,9 @@ const Cartera = () => {
                   columnas={columnas.clientes_asesores}
                   data={clientes}
                   titulo="Clientes"
+                  infoClick={(cliente) =>
+                    history.push("/clientes/" + cliente.id)
+                  }
                 />
               </div>
               <div className="table-asesores">
@@ -138,6 +147,9 @@ const Cartera = () => {
                   columnas={columnas.clientes_asesores}
                   data={asesores}
                   titulo="Asesores"
+                  infoClick={(asesor) =>
+                    history.push("/asesores/" + asesor.uid)
+                  }
                 />
               </div>
             </div>
@@ -162,6 +174,10 @@ const Cartera = () => {
                 columnas={columnas.gerentes}
                 data={gerentes}
                 titulo="Gerentes"
+                infoClick={(gerente) =>
+                  history.push("/gerentes/" + gerente.uid)
+                  // TODO: Cuidado con esto si no se hace distinción entre asesor y gerente en su pag de detalle
+                }
               />
             </div>
           </div>
