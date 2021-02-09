@@ -68,7 +68,6 @@ export const registrarUsuario = async (usuario, foto) => {
 };
 
 export const actualizarUsuario = async (usuario, nuevosDatos, foto) => {
-
   if (foto) {
     const url = await subirArchivo(foto, `imagenes/${usuario.uid}.png`);
     nuevosDatos.fotoURL = url;
@@ -107,25 +106,50 @@ export const registrarAgencia = async (agencia, foto) => {
 };
 
 // Consultar asesores de una agencia
-export const obtenerAsesores = async (agenciaId) => {
-  const promesa = await db
+export const obtenerAsesores = (agenciaID, func) => {
+  return db
     .collection("agencias")
-    .doc(agenciaId)
+    .doc(agenciaID)
     .collection("usuarios")
     .where("tipo", "==", "asesor")
-    .get();
-  return promesa.docs;
+    .onSnapshot((snapshot) => {
+      const asesores = snapshot.docs.map((doc) => {
+        const asesor = doc.data();
+        return asesor;
+      });
+      func(asesores);
+    });
 };
 
 // Consultar gerentes de una agencia
-export const obtenerGerentes = async (agenciaId) => {
-  const promesa = await db
+export const obtenerGerentes = (agenciaID, func) => {
+  return db
     .collection("agencias")
-    .doc(agenciaId)
+    .doc(agenciaID)
     .collection("usuarios")
-    .where("tipo", "==", "gerente")
-    .get();
-  return promesa.docs;
+    .where("tipo", "in", ["gerente", "superusuario"])
+    .onSnapshot((snapshot) => {
+      const gerentes = snapshot.docs.map((doc) => {
+        const gerente = doc.data();
+        return gerente;
+      });
+      func(gerentes);
+    });
+};
+
+// Consultar clientes de una agencia
+export const obtenerClientes = (agenciaID, func) => {
+  return db
+    .collection("agencias")
+    .doc(agenciaID)
+    .collection("clientes")
+    .onSnapshot((snapshot) => {
+      const clientes = snapshot.docs.map((doc) => {
+        const cliente = doc.data();
+        return cliente;
+      });
+      func(clientes);
+    });
 };
 
 // TODO: Para las siguientes cuatro funciones considerar (de ser relevante) si están culminadas las operaciones

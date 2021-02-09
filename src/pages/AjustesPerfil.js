@@ -140,7 +140,9 @@ const AjustesPerfil = () => {
               {usuario.nombre + " " + usuario.apellido}
             </Typography>
             <Typography variant="body1">{usuario.direccion}</Typography>
-            <Typography variant="body1">Cargo</Typography>
+            <Typography variant="body1">
+              {usuario.tipo === "asesor" ? "Asesor Inmobiliario" : "Gerente"}
+            </Typography>
             {/* TODO: Colocar el cargo cuando el campo exista */}
           </div>
         </div>
