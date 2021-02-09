@@ -1,0 +1,28 @@
+.container-crear-operacion {
+    width: 200pt;
+}
+
+.container-select {
+    margin-bottom: 15pt;
+}
+
+.container-inputs-crear-operacion{
+    margin-top: 15pt;
+    margin-bottom: 10pt;
+}
+
+.container-input-operacion-individual{
+    margin-top: 10pt;
+    margin-bottom: 10pt;
+}
+
+.boton-cancelar-crear-operacion{
+    font-weight: 600;
+    color: #c4302b;
+}
+
+.boton-cancelar-crear-operacion:hover{
+    font-weight: bold;
+    color: #c4302b;
+    cursor: pointer;
+}
