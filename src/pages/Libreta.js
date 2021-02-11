@@ -37,8 +37,8 @@ const Libreta = () => {
             <CrearOperacion close={() => setShowCreate(false)} />
           </DialogContent>
         </Dialog>
-        <Paper position="fixed">
-          <Tabs centered value={value} onChange={manejarTabs}>
+        <Paper elevation={6} position="fixed">
+          <Tabs textColor="primary" indicatorColor="primary" centered value={value} onChange={manejarTabs}>
             <Tab label="Asignadas" />
             <Tab label="De Captación" />
             <Tab label="De Cierre" />
