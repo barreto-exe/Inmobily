@@ -10,6 +10,7 @@ import Libreta from "./pages/Libreta";
 import Reportes from "./pages/Reportes";
 import Sidebar from "./components/Sidebar";
 import AjustesPerfil from "./pages/AjustesPerfil";
+import CrearOperacion from "./pages/CrearOperacion";
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
   ThemeProvider,
@@ -98,6 +99,11 @@ function App() {
               {/* Ajustes del perfil */}
               <RutaProtegida path="/ajustes">
                 <AjustesPerfil />
+                <Sidebar />
+              </RutaProtegida>
+              {/* Aperturar Operación */}
+              <RutaProtegida path="/crearoperacion">
+                <CrearOperacion />
                 <Sidebar />
               </RutaProtegida>
             </UsuarioProvider>
