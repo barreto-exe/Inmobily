@@ -5,6 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import CrearOpCierre from "../components/CrearOpCierre";
 import CrearOpCaptacion from "../components/CrearOpCaptacion";
+import DatosCrearOp from '../components/DatosCrearOp'
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -26,9 +27,11 @@ const Libreta = () => {
           </Tabs>
         </Paper>
         <TabPanel value={value} index={0}>
+          <DatosCrearOp />
           <CrearOpCierre />
         </TabPanel>
         <TabPanel value={value} index={1}>
+          <DatosCrearOp />
           <CrearOpCaptacion />
         </TabPanel>
       </div>
