@@ -26,6 +26,7 @@
 .containerFlexing{
   display: flex;
   padding-bottom: 20px;
+  justify-content: space-between;
 }
 
 .div-foto-icon{
@@ -45,4 +46,13 @@
 
 .reg-boton{
   width: 200px;
+}
+
+.campo-correo-registro{
+  flex: 0.7;
+  margin-right: 20px;
+}
+
+.campo-rif-registroU{
+  flex: 0.3;
 }

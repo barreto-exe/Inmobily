@@ -171,18 +171,33 @@ const RegistrarUsuario = () => {
             ></TextField>
           </div>
 
-          <TextField
-            fullWidth
-            className="textFields"
-            label="Correo"
-            type="email"
-            variant="filled"
-            required
-            style={{ marginBottom: "20px" }}
-            error={mensajesError.correo !== ""}
-            helperText={mensajesError.correo}
-            onChange={(e) => cambiarTexto("correo", e.target.value)}
-          ></TextField>
+          <div className="containerFlexing">
+            <div className="campo-correo-registro">
+              <TextField
+                fullWidth
+                className="textFields"
+                label="Correo"
+                type="email"
+                variant="filled"
+                required
+                error={mensajesError.correo !== ""}
+                helperText={mensajesError.correo}
+                onChange={(e) => cambiarTexto("correo", e.target.value)}
+              ></TextField>
+            </div>
+            <div className="campo-rif-registroU">
+              <TextField
+                  fullWidth
+                  className="textFields"
+                  label="RIF de Agencia"
+                  variant="filled"
+                  required
+                  error={mensajesError.rif !== ""}
+                  helperText={mensajesError.rif}
+                  onChange={(e) => cambiarTexto("rif", e.target.value)}
+                ></TextField>
+            </div>
+          </div>
           {/* TODO: Mejorar la cédula por lo que mencionó Rondón */}
           <div className="containerFlexing">
             <TextField
@@ -281,17 +296,7 @@ const RegistrarUsuario = () => {
               }}
             ></TextField>
             {/* TODO: OJO colocar en un lugar correcto este input */}
-            <TextField
-              fullWidth
-              className="textFields"
-              label="RIF de Agencia"
-              variant="filled"
-              required
-              style={{ marginRight: "20px" }}
-              error={mensajesError.rif !== ""}
-              helperText={mensajesError.rif}
-              onChange={(e) => cambiarTexto("rif", e.target.value)}
-            ></TextField>
+            
           </div>
         </div>
         <div className="container-avatar-icon">
