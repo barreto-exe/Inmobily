@@ -30,7 +30,7 @@ const OperacionesCierre = () => {
 
   if (cargando) {
     return (
-      <div>
+      <div className="container-op-center" style={{marginTop: '20pt'}}>
         <CircularProgress />
       </div>
     );
