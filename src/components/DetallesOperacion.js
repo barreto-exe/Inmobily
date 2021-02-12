@@ -170,7 +170,13 @@ const DetallesOperacion = () => {
                 áreas sociales
               </Typography>
               <Typography variant="body1" style={{ paddingBottom: "20px" }}>
-                No
+                {op.inmueble.cancha ||
+                op.inmueble.parque ||
+                op.inmueble.parrilla ||
+                op.inmueble.piscina ||
+                op.inmueble.salon
+                  ? "Sí"
+                  : "No"}
               </Typography>
             </div>
 
