@@ -238,6 +238,9 @@ const DatosCrearOp = () => {
 
   return (
     <div>
+      <div className="container-op-center">
+        {/* ACA VA EL RADIO BUTTON KAREN :) */}
+      </div>
       <div className="container-op-selectpersona">
         <TextField
           select
@@ -457,6 +460,7 @@ const DatosCrearOp = () => {
             style={{ marginBottom: "5px", marginLeft: "15px" }}
         />
       </div>
+
       {
         checked ? 
         compAreasSociales() : undefined
