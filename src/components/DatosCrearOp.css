@@ -12,3 +12,16 @@
     margin-left: 10pt;
     margin-right: 10pt;
 }
+
+.container-op-center {
+    text-align: center;
+    margin: auto;
+    justify-content: center; 
+}
+
+.container-op-flex-check {
+    display: flex;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+}
