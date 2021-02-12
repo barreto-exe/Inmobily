@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "./AjustesPerfil.css";
-import { Typography, TextField, Button, Divider, Avatar, IconButton } from "@material-ui/core";
+import {
+  Typography,
+  TextField,
+  Button,
+  Divider,
+  Avatar,
+  IconButton,
+} from "@material-ui/core";
 import { useUsuario } from "../contexts/UsuarioContext";
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import PhotoCamera from "@material-ui/icons/PhotoCamera";
 import { actualizarUsuario, subirArchivo } from "../firebase/functions";
 
 const AjustesPerfil = () => {
@@ -13,7 +20,6 @@ const AjustesPerfil = () => {
     apellido: usuario.apellido,
     telefono: usuario.telefono,
     direccion: usuario.direccion,
-    fotoURL: usuario.fotoURL,
   });
 
   const [nuevaPassword, setNuevaPassword] = useState({
@@ -26,18 +32,9 @@ const AjustesPerfil = () => {
   const [errorPass, setErrorPass] = useState("");
   const [foto, setFoto] = useState(null);
 
-  const seleccionarFoto = async(e) => {
-    if (e.target.files[0]){
-      const foto = e.target.files[0];
-      setFoto(foto);
-      const url = await subirArchivo(foto, `imagenes/${usuario.uid}.png`);
-      actualizarUsuario(usuario, {...nuevosDatos, fotoURL: url})
-      .then(() => setNuevosDatos({...nuevosDatos, fotoURL: url}))
-      .catch((err) => {
-        alert("Error al intentar subir la imagen");
-        console.log("error: " + err)
-      })
-    }
+  const seleccionarFoto = async (e) => {
+    const foto = e.target.files[0];
+    setFoto(foto);
   };
 
   // Función llamada al cambiar el texto del input de usuario
@@ -63,7 +60,7 @@ const AjustesPerfil = () => {
     }
 
     try {
-      await actualizarUsuario(usuario, nuevosDatos);
+      await actualizarUsuario(usuario, nuevosDatos, foto);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -73,8 +70,11 @@ const AjustesPerfil = () => {
 
   // Cambiar contraseña
   const cambiarPassword = async () => {
-
-    if (nuevaPassword.actual === "" || nuevaPassword.nueva === "" || nuevaPassword.confirmacion === "") {
+    if (
+      nuevaPassword.actual === "" ||
+      nuevaPassword.nueva === "" ||
+      nuevaPassword.confirmacion === ""
+    ) {
       setErrorPass("Ingresa tus contraseñas, por favor");
       return;
     }
@@ -92,7 +92,7 @@ const AjustesPerfil = () => {
       console.log(error);
       // TODO: Colocar error de desconexión
     }
-  }
+  };
 
   return (
     <div className={"fondo"}>
@@ -100,13 +100,37 @@ const AjustesPerfil = () => {
         {/*TODO: poner componente para cambiar foto de perfil */}
         <div className={"info"}>
           <div className="foto-ajustes">
-            <Avatar style={{fontSize: '40px' ,height: '130px', width: '130px'}} alt="Foto de perfil" src={nuevosDatos.fotoURL}/>
-            <input accept="image/*" style={{display: 'none'}} id="icono-boton-ajustes"  type="file"
-            onChange={seleccionarFoto}/>
+            <Avatar
+              style={{ fontSize: "40px", height: "130px", width: "130px" }}
+              alt="Foto de perfil"
+              src={(foto && URL.createObjectURL(foto)) || usuario.fotoURL}
+            />
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="icono-boton-ajustes"
+              type="file"
+              onChange={seleccionarFoto}
+            />
             <div className="foto-icono-container-ajustes">
-              <label htmlFor="icono-boton-ajustes" className="foto-icono-ajustes" >
-                <IconButton aria-label='upload picture' color="inherit" component="span" size="small">
-                  <PhotoCamera style={{color: "#191e34", width: '20px', height: '20px', padding: '5'}}/>
+              <label
+                htmlFor="icono-boton-ajustes"
+                className="foto-icono-ajustes"
+              >
+                <IconButton
+                  aria-label="upload picture"
+                  color="inherit"
+                  component="span"
+                  size="small"
+                >
+                  <PhotoCamera
+                    style={{
+                      color: "#191e34",
+                      width: "20px",
+                      height: "20px",
+                      padding: "5",
+                    }}
+                  />
                 </IconButton>
               </label>
             </div>
@@ -116,13 +140,15 @@ const AjustesPerfil = () => {
               {usuario.nombre + " " + usuario.apellido}
             </Typography>
             <Typography variant="body1">{usuario.direccion}</Typography>
-            <Typography variant="body1">Cargo</Typography>
+            <Typography variant="body1">
+              {usuario.tipo === "asesor" ? "Asesor Inmobiliario" : "Gerente"}
+            </Typography>
             {/* TODO: Colocar el cargo cuando el campo exista */}
           </div>
         </div>
         <div className={"inputs-ajustes-container"}>
           {/* TODO: Colocar correctamente el mensaje de error */}
-          {errorMessage !== "" && <p>Debes llenar todos los campos</p>}
+          {errorMessage && <p>Debes llenar todos los campos</p>}
           <div className={"input-flex"}>
             <TextField
               className={"inputs-ajustes"}
@@ -175,7 +201,7 @@ const AjustesPerfil = () => {
             Cambiar Contraseña
           </Typography>
           {/* TODO: Estilizar este mensaje de error */}
-          { errorPass !== "" && <p>{errorPass}</p> }
+          {errorPass !== "" && <p>{errorPass}</p>}
           <TextField
             className={"inputs-ajustes"}
             label="Contraseña Actual"
