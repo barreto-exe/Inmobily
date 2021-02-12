@@ -8,6 +8,7 @@ import {
 } from "../firebase/functions";
 import { useUsuario } from "../contexts/UsuarioContext";
 import { useHistory } from "react-router-dom";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const Cartera = () => {
   //Estas columnas son fijas, el campo field es el nombre con el que se accedera a dicho dato
@@ -128,7 +129,9 @@ const Cartera = () => {
     <div className="fondo">
       <div className="container-menu">
         {loadingAsesor || loadingGerente ? (
-          <h1>Cargando...</h1>
+          <div className="container-op-center" style={{marginTop: '20pt'}}>
+            <CircularProgress />
+          </div>
         ) : (
           <div>
             <div className="clientes-asesores-container">
