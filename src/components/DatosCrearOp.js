@@ -88,10 +88,47 @@ const DatosCrearOp = () => {
 
   const [persona, setPersona] = useState(null);
   const [currency, setCurrency] = useState(1);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
+
+  const compAreasSociales = () => {
+    return (
+      <FormGroup >
+          <div className="container-op-flex-check">
+            <FormControlLabel
+              control={<Checkbox checked={parque} onChange={hcAreasSociales} name="parque" />}
+              label="Parque infantil"
+              style={{ marginBottom: "5px", marginLeft: "15px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={piscina} onChange={hcAreasSociales} name="piscina" />}
+              label="Piscina"
+              style={{ marginBottom: "5px", marginLeft: "15px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={salon} onChange={hcAreasSociales} name="salon" />}
+              label="Salón de reuniones"
+              style={{ marginBottom: "5px", marginLeft: "15px" }}
+            />
+          </div>
+          <div className="container-op-flex-check">
+            <FormControlLabel
+              control={<Checkbox checked={cancha} onChange={hcAreasSociales} name="cancha" />}
+              label="Cancha deportiva"
+              style={{ marginBottom: "5px", marginLeft: "15px" }}
+            />
+            <FormControlLabel
+              control={<Checkbox checked={parrilla} onChange={hcAreasSociales} name="parrilla" />}
+              label="Parrillera"
+              style={{ marginBottom: "5px", marginLeft: "15px" }}
+            />
+          </div>
+        </FormGroup>
+    )
+  }
 
   const personNatural = () => {
     return(
@@ -416,40 +453,14 @@ const DatosCrearOp = () => {
             value="areas"
             control={<Switch color="primary" />}
             label="Áreas Sociales"
+            onChange={(event) => setChecked(event.target.checked)}
             style={{ marginBottom: "5px", marginLeft: "15px" }}
         />
       </div>
-      <FormGroup >
-          <div className="container-op-flex-check">
-            <FormControlLabel
-              control={<Checkbox checked={parque} onChange={hcAreasSociales} name="parque" />}
-              label="Parque infantil"
-              style={{ marginBottom: "5px", marginLeft: "15px" }}
-            />
-            <FormControlLabel
-              control={<Checkbox checked={piscina} onChange={hcAreasSociales} name="piscina" />}
-              label="Piscina"
-              style={{ marginBottom: "5px", marginLeft: "15px" }}
-            />
-            <FormControlLabel
-              control={<Checkbox checked={salon} onChange={hcAreasSociales} name="salon" />}
-              label="Salón de reuniones"
-              style={{ marginBottom: "5px", marginLeft: "15px" }}
-            />
-          </div>
-          <div className="container-op-flex-check">
-            <FormControlLabel
-              control={<Checkbox checked={cancha} onChange={hcAreasSociales} name="cancha" />}
-              label="Cancha deportiva"
-              style={{ marginBottom: "5px", marginLeft: "15px" }}
-            />
-            <FormControlLabel
-              control={<Checkbox checked={parrilla} onChange={hcAreasSociales} name="parrilla" />}
-              label="Parrillera"
-              style={{ marginBottom: "5px", marginLeft: "15px" }}
-            />
-          </div>
-        </FormGroup>  
+      {
+        checked ? 
+        compAreasSociales() : undefined
+      }
     </div>
   );
 };
