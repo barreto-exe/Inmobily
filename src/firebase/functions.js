@@ -153,6 +153,12 @@ export const obtenerClientes = (agenciaID, func) => {
     });
 };
 
+export const crearOperacion = async (asesor, operacion) => {
+  await db
+    .collection(`agencias/${asesor.agenciaID}/operaciones`)
+    .add(operacion);
+};
+
 // TODO: Para las siguientes cuatro funciones considerar (de ser relevante) si están culminadas las operaciones
 
 // Consultar las operaciones asignadas a un asesor

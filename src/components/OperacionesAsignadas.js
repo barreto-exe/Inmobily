@@ -36,25 +36,6 @@ const OperacionesAsignadas = () => {
   return (
     <div>
       <List>
-        {/* TODO: Quitar esta luego que es solo de ejemplo */}
-        <ListItem
-          divider
-          button
-          style={{
-            backgroundColor: "#fff",
-            borderRadius: "5pt",
-            marginBottom: "10pt",
-            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          }}
-        >
-          <ListItemText
-            primary="Operacion Asignada"
-            secondary="#001 Cliente: Jesús González"
-            secondaryTypographyProps={{ align: "left" }}
-            style={{ whiteSpace: "pre" }}
-          />
-        </ListItem>
-
         {/* Esta es la real */}
         {operaciones.map((operacion) => (
           <ListItem
