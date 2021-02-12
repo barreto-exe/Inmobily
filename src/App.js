@@ -11,6 +11,8 @@ import Reportes from "./pages/Reportes";
 import Sidebar from "./components/Sidebar";
 import AjustesPerfil from "./pages/AjustesPerfil";
 import CrearOperacion from "./pages/CrearOperacion";
+import DetallesOperacion from "./components/DetallesOperacion";
+import DetallesUsuario from "./components/DetallesUsuario";
 import {
   unstable_createMuiStrictModeTheme as createMuiTheme,
   ThemeProvider,
@@ -104,6 +106,16 @@ function App() {
               {/* Aperturar Operación */}
               <RutaProtegida path="/crearoperacion">
                 <CrearOperacion />
+                <Sidebar />
+              </RutaProtegida>
+              {/*Detalles de una operacion*/}
+              <RutaProtegida path="/detallesop">
+                <DetallesOperacion />
+                <Sidebar />
+              </RutaProtegida>
+              {/*Detalles de un usuario (gerente/asesor)*/}
+              <RutaProtegida path="/detallesuser">
+                <DetallesUsuario />
                 <Sidebar />
               </RutaProtegida>
             </UsuarioProvider>
