@@ -43,6 +43,7 @@ const OperacionesAsignadas = () => {
             button
             component={Link}
             to={"/operaciones/" + operacion.id}
+            key={operacion.id}
             style={{
               backgroundColor: "#fff",
               borderRadius: "5pt",
@@ -51,6 +52,7 @@ const OperacionesAsignadas = () => {
             }}
           >
             <ListItemText
+              key={operacion.id + "li"}
               primary="Operacion Asignada"
               secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}

@@ -109,12 +109,12 @@ function App() {
                 <Sidebar />
               </RutaProtegida>
               {/*Detalles de una operacion*/}
-              <RutaProtegida path="/detallesop">
+              <RutaProtegida path="/operaciones/:id">
                 <DetallesOperacion />
                 <Sidebar />
               </RutaProtegida>
               {/*Detalles de un usuario (gerente/asesor)*/}
-              <RutaProtegida path="/detallesuser">
+              <RutaProtegida path="/detallesuser:/id">
                 <DetallesUsuario />
                 <Sidebar />
               </RutaProtegida>

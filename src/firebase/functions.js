@@ -227,3 +227,13 @@ export const obtenerOperacionesUnificadas = (agenciaID, func) => {
       func(operaciones);
     });
 };
+
+export const obtenerOperacion = (agenciaID, id, func) => {
+  return db
+    .collection(`agencias/${agenciaID}/operaciones`)
+    .doc(id)
+    .onSnapshot((snapshot) => {
+      const operacion = snapshot.data();
+      func(operacion);
+    });
+};

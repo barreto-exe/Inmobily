@@ -316,7 +316,7 @@ const DatosCrearOp = () => {
 
     try {
       await crearOperacion(usuario, operacion);
-      history.push("/libreta");
+      history.push("/");
     } catch (error) {
       console.log(error);
     }

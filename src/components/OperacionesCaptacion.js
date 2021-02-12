@@ -44,6 +44,7 @@ const OperacionesCaptacion = () => {
           <ListItem
             divider
             button
+            key={operacion.id}
             component={Link}
             to={"/operaciones/" + operacion.id}
             style={{
@@ -54,6 +55,7 @@ const OperacionesCaptacion = () => {
             }}
           >
             <ListItemText
+              key={operacion.id + "dsa"}
               primary="Operación de Captación"
               secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}
