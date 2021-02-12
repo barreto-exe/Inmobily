@@ -9,6 +9,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
+import FormLabel from '@material-ui/core/FormLabel';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
 
 
 const DatosCrearOp = () => {
@@ -89,6 +93,11 @@ const DatosCrearOp = () => {
   const [persona, setPersona] = useState(null);
   const [currency, setCurrency] = useState(1);
   const [checked, setChecked] = useState(false);
+  const [tipoDeOperacion, setTipoOp] = useState("captacion");
+
+  const hcTipoOp = (event) => {
+    setTipoOp(event.target.value)
+  }; 
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -239,7 +248,13 @@ const DatosCrearOp = () => {
   return (
     <div>
       <div className="container-op-center">
-        {/* ACA VA EL RADIO BUTTON KAREN :) */}
+        <FormControl component="fieldset">
+          <RadioGroup aria-label="tipos de operacion" name="tipos de operacion" value={tipoDeOperacion} onChange={hcTipoOp}>
+            <FormLabel component="legend">Tipo de operacion</FormLabel>
+            <FormControlLabel value="captacion" control={<Radio />} label="Operación de Captación" name="tipo" />
+            <FormControlLabel value="cierre" control={<Radio />} label="Operación de Cierre" name="tipo" />
+          </RadioGroup>
+        </FormControl>
       </div>
       <div className="container-op-selectpersona">
         <TextField
