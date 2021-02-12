@@ -52,7 +52,7 @@ const OperacionesAsignadas = () => {
           >
             <ListItemText
               primary="Operacion Asignada"
-              secondary={`#${operacion.numero} Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
+              secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}
               style={{ whiteSpace: "pre" }}
             />

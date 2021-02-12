@@ -17,10 +17,13 @@ const OperacionesCierre = () => {
 
   useEffect(() => {
     setCargando(true); // TODO: Quitar esta carga si no genera problemas
-    const unsubscribe = obtenerOperacionesCierre(usuario, (operaciones) => {
-      setOperaciones(operaciones);
-      setCargando(false);
-    });
+    const unsubscribe = obtenerOperacionesCierre(
+      usuario.agenciaID,
+      (operaciones) => {
+        setOperaciones(operaciones);
+        setCargando(false);
+      }
+    );
 
     return unsubscribe;
   }, []);
@@ -52,7 +55,7 @@ const OperacionesCierre = () => {
           >
             <ListItemText
               primary="Operación de Cierre"
-              secondary={`#${operacion.numero} Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
+              secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}
               style={{ whiteSpace: "pre" }}
             />

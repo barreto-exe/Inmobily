@@ -17,10 +17,13 @@ const OperacionesCaptacion = () => {
 
   useEffect(() => {
     setCargando(true); // TODO: Quitar esta carga si no genera problemas
-    const unsubscribe = obtenerOperacionesCaptacion(usuario, (operaciones) => {
-      setOperaciones(operaciones);
-      setCargando(false);
-    });
+    const unsubscribe = obtenerOperacionesCaptacion(
+      usuario.agenciaID,
+      (operaciones) => {
+        setOperaciones(operaciones);
+        setCargando(false);
+      }
+    );
 
     return unsubscribe;
   }, []);
@@ -52,7 +55,7 @@ const OperacionesCaptacion = () => {
           >
             <ListItemText
               primary="Operación de Captación"
-              secondary={`#${operacion.numero} Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
+              secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}
               style={{ whiteSpace: "pre" }}
             />

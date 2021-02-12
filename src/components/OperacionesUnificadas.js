@@ -17,10 +17,13 @@ const OperacionesUnificadas = () => {
 
   useEffect(() => {
     setCargando(true); // TODO: Quitar esta carga si no genera problemas
-    const unsubscribe = obtenerOperacionesUnificadas(usuario, (operaciones) => {
-      setOperaciones(operaciones);
-      setCargando(false);
-    });
+    const unsubscribe = obtenerOperacionesUnificadas(
+      usuario.agenciaID,
+      (operaciones) => {
+        setOperaciones(operaciones);
+        setCargando(false);
+      }
+    );
 
     return unsubscribe;
   }, []);
@@ -52,7 +55,7 @@ const OperacionesUnificadas = () => {
           >
             <ListItemText
               primary="Operacion Unificada"
-              secondary={`#${operacion.numero} Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
+              secondary={`Cliente: ${operacion.cliente.nombre} ${operacion.cliente.apellido}`}
               secondaryTypographyProps={{ align: "left" }}
               style={{ whiteSpace: "pre" }}
             />
