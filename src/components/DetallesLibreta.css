@@ -1,0 +1,19 @@
+.detalles-container{
+    position: relative;
+    top: 90px;
+    width: 500px;
+    align-self: center;
+    margin: 10px auto;
+    left: 120px;
+    align-content: center;
+    text-align: center;
+}
+
+.paper{
+    align-content: center;
+    text-align: center;
+    display: "flex";
+    flex-direction: "column";
+    justify-content: "center";
+    
+}
