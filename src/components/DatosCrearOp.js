@@ -13,6 +13,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 
 
 const DatosCrearOp = () => {
@@ -246,13 +247,15 @@ const DatosCrearOp = () => {
   ];
 
   return (
-    <div>
+    <div style={{paddingBottom: '50pt'}}>
       <div className="container-op-center">
         <FormControl component="fieldset">
           <RadioGroup aria-label="tipos de operacion" name="tipos de operacion" value={tipoDeOperacion} onChange={hcTipoOp}>
-            <FormLabel component="legend">Tipo de operacion</FormLabel>
-            <FormControlLabel value="captacion" control={<Radio />} label="Operación de Captación" name="tipo" />
-            <FormControlLabel value="cierre" control={<Radio />} label="Operación de Cierre" name="tipo" />
+            <FormLabel component="legend" style={{fontWeight: 'bold', marginBottom: '10pt'}}>Tipo de operacion</FormLabel>
+            <div className="container-op-flex">
+              <FormControlLabel value="captacion" color="primary" control={<Radio />} label="Operación de Captación" name="tipo" />
+              <FormControlLabel value="cierre" control={<Radio />} label="Operación de Cierre" name="tipo" />
+            </div>
           </RadioGroup>
         </FormControl>
       </div>
@@ -480,6 +483,13 @@ const DatosCrearOp = () => {
         checked ? 
         compAreasSociales() : undefined
       }
+
+      <div className="container-op-center" style={{marginTop: '20pt'}}>
+        <Button variant="contained" color="primary">
+          Aperturar Operación
+        </Button>
+      </div>
+
     </div>
   );
 };
