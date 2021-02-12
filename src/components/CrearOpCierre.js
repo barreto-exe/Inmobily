@@ -30,11 +30,6 @@ const CrearOpCierre = () => {
     parrilla: false,
   };
 
-  const DatosPersonaNatural = 
-    <div>
-        <h1>cierre</h1> 
-    </div>;
-
   // Estados
   const [inmueble, setInmueble] = useState(datosIniciales);
   const [areasSociales, setAreasS] = useState({
@@ -90,24 +85,43 @@ const CrearOpCierre = () => {
 
   return (
     <div> 
-      {DatosPersonaNatural}
       {/* Textfield precio */}
-      <TextField
-          label="Precio"
-          variant="outlined"
-          defaultValue="0.0"
-          name="precio"
-          type="number"
-          style={{ marginBottom: "15px", marginLeft: "15px" }}
-          startAdornment={<InputAdornment position ="start">$</InputAdornment>}
-          labelWidth={60}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={(e) => cambiarTexto("precio", e.target.value)}
-      />
+      <div className="container-op-flex">
+        <TextField
+            fullWidth
+            style={{marginLeft: '10pt', marginRight: '10pt'}}
+            label="Precio ($)"
+            variant="outlined"
+            defaultValue="0.0"
+            name="precio"
+            type="number"
+            startAdornment={<InputAdornment position ="start">$</InputAdornment>}
+            labelWidth={60}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={(e) => cambiarTexto("precio", e.target.value)}
+        />
+        {/* Textfield superficie */}
+        <TextField
+            fullWidth
+            style={{marginLeft: '10pt', marginRight: '10pt'}}
+            label="Superficie (m²)"
+            variant="outlined"
+            defaultValue="0.0"
+            name="superficie"
+            type="number"
+            startAdornment={<InputAdornment position ="start">$</InputAdornment>}
+            labelWidth={60}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={(e) => cambiarTexto("superficie", e.target.value)}
+        />
+      </div>
       {/* Textfield ubicación */}
       <TextField
+          fullWidth
           label="Ubicación"
           variant="outlined"
           defaultValue=""
@@ -116,24 +130,10 @@ const CrearOpCierre = () => {
           labelWidth={60}
           onChange={(e) => cambiarTexto("ubicacion", e.target.value)}
       />
-      {/* Textfield superficie */}
-      <TextField
-          label="Superficie"
-          variant="outlined"
-          defaultValue="0.0"
-          name="superficie"
-          type="number"
-          style={{ marginBottom: "15px", marginLeft: "15px" }}
-          startAdornment={<InputAdornment position ="start">$</InputAdornment>}
-          labelWidth={60}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={(e) => cambiarTexto("superficie", e.target.value)}
-      />
       {/* Textfield tipo de negocio */}
       <TextField
           select
+          fullWidth
           label="Tipo de negocio"
           value="Compra"
           name="tipoDeNegocio"
@@ -151,6 +151,7 @@ const CrearOpCierre = () => {
       {/* Textfield tipo de inmueble */}
       <TextField
           select
+          fullWidth
           label="Tipo de inmueble"
           value="Casa"
           name="tipoDeInmueble"
@@ -168,6 +169,7 @@ const CrearOpCierre = () => {
       {/* Textfield uso del inmueble */}
       <TextField
           select
+          fullWidth
           label="Uso del inmueble"
           value="Residencial"
           name="usoDeInmueble"
@@ -185,6 +187,7 @@ const CrearOpCierre = () => {
       {/* Textfield condicion de obra */}
       <TextField
           select
+          fullWidth
           label="Condición de obra"
           value="Obra lista"
           name="condicionDeObra"
@@ -201,6 +204,7 @@ const CrearOpCierre = () => {
       </TextField>
       {/* Textfield estilo de inmueble */}
       <TextField
+          fullWidth
           select
           label="Estilo de inmueble"
           value="Moderno"
@@ -218,6 +222,7 @@ const CrearOpCierre = () => {
       </TextField>
       {/* Textfield cantidad de baños */}
       <TextField
+          fullWidth
           label="N° Baños"
           variant="outlined"
           defaultValue="0"
@@ -232,6 +237,7 @@ const CrearOpCierre = () => {
       />
       {/* Textfield cantidad de habitaciones */}
       <TextField
+          fullWidth
           label="N° Habitaciones"
           variant="outlined"
           defaultValue="0"
@@ -246,6 +252,7 @@ const CrearOpCierre = () => {
       />
       {/* Textfield capacidad de estacionamiento */}
       <TextField
+          fullWidth
           label="Capacidad de estacionamiento"
           variant="outlined"
           defaultValue="0"
